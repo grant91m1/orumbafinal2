@@ -1,7 +1,9 @@
-from flask import Flask, send_from_directory, request, jsonify, send_file, session, redirect, url_for, render_template
+from flask import Flask, send_from_directory, request, jsonify, session, redirect, url_for, render_template
 from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+import hashlib
+import hmac
 import os
 import re
 import secrets
@@ -10,6 +12,7 @@ import bcrypt
 from functools import wraps
 
 from app.db import db
+from app.people import PEOPLE
 from app.storage import MAX_FILE_SIZE, storage
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -36,6 +39,9 @@ app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE + 1024 * 1024
 app.config.setdefault('SESSION_COOKIE_SAMESITE', 'lax')
 app.config['SESSION_COOKIE_SECURE'] = os.environ.get('FLASK_ENV') == 'production'
 
+# Named officials, available to every template as `people`
+app.jinja_env.globals['people'] = PEOPLE
+
 # CSRF Protection
 csrf = CSRFProtect(app)
 
@@ -47,16 +53,17 @@ limiter = Limiter(
     default_limits=["200 per day", "50 per hour"]
 )
 
+# Code the council gives to authorised writers so they can create an account
+WRITER_INVITE_CODE = os.environ.get('WRITER_INVITE_CODE', '').strip()
+
 posts = []
 users = []
 events = []
 albums = []
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.static_folder, 'images'), 'orumba-north-logo.jpg', mimetype='image/jpeg')
+    return send_from_directory(os.path.join(app.static_folder, 'images'), 'favicon-32.png', mimetype='image/png')
 
 @app.route('/robots.txt')
 def robots():
@@ -74,11 +81,10 @@ def verify_password(password, hashed):
     try:
         if bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8')):
             return True
-    except:
+    except Exception:
         pass
 
     # Fallback to SHA256 for legacy passwords (old format)
-    import hashlib
     legacy_hash = hashlib.sha256(password.encode()).hexdigest()
     return hashed == legacy_hash
 
@@ -96,9 +102,6 @@ def load_posts():
             p['image'] = ''
     posts = loaded
 
-def save_posts():
-    pass
-
 def load_users():
     global users
     loaded = db.load_users()
@@ -108,7 +111,7 @@ def load_users():
             user['id'] = next_user_id
             next_user_id += 1
         if 'role' not in user:
-            user['role'] = 'citizen'
+            user['role'] = 'writer'
         if 'name' not in user:
             user['name'] = user['username']
         if 'email' not in user:
@@ -117,15 +120,9 @@ def load_users():
             user['avatar'] = ''
     users = loaded
 
-def save_users():
-    pass
-
 def load_events():
     global events
     events = db.load_events()
-
-def save_events():
-    pass
 
 def load_albums():
     global albums
@@ -135,33 +132,21 @@ def load_albums():
             alb['user_id'] = None
     albums = loaded
 
-def save_albums():
-    pass
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'username' not in session:
-            return redirect('/login')
+            return redirect(url_for('serve_login'))
         current_user = next((u for u in users if u['username'] == session['username']), None)
         if not current_user:
             session.pop('username', None)
-            return redirect('/login')
+            return redirect(url_for('serve_login'))
         if 'id' not in current_user:
             current_user['id'] = 1
         if 'role' not in current_user:
-            current_user['role'] = 'citizen'
+            current_user['role'] = 'writer'
         session['user_id'] = current_user['id']
         session['role'] = current_user['role']
-        return f(*args, **kwargs)
-    return decorated_function
-
-def admin_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        login_required(lambda: None)(*args, **kwargs)
-        if session.get('role') != 'admin':
-            return jsonify({'status': 'error', 'message': 'Admin access required'}), 403
         return f(*args, **kwargs)
     return decorated_function
 
@@ -244,8 +229,10 @@ def api_update_post(post_id):
 def api_delete_post(post_id):
     user_id = session.get('user_id')
     global posts
-    posts = [p for p in posts if not (p['id'] == post_id and p.get('user_id') == user_id)]
+    if not any(p.get('id') == post_id and p.get('user_id') == user_id for p in posts):
+        return jsonify({'status': 'error', 'message': 'Post not found'}), 404
     db.delete_post(post_id, user_id)
+    posts = [p for p in posts if not (p.get('id') == post_id and p.get('user_id') == user_id)]
     return jsonify({'status': 'success'})
 
 @app.route('/api/profile/albums', methods=['GET'])
@@ -289,6 +276,17 @@ def api_create_album():
     db.save_album(new_album)
     albums.append(new_album)
     return jsonify({'status': 'success', 'album': new_album})
+
+@app.route('/api/profile/albums/<int:album_id>', methods=['DELETE'])
+@login_required
+def api_delete_album(album_id):
+    user_id = session.get('user_id')
+    global albums
+    if not any(a.get('id') == album_id and a.get('user_id') == user_id for a in albums):
+        return jsonify({'status': 'error', 'message': 'Album not found'}), 404
+    db.delete_album(album_id, user_id)
+    albums = [a for a in albums if not (a.get('id') == album_id and a.get('user_id') == user_id)]
+    return jsonify({'status': 'success'})
 
 @app.route('/api/profile/events', methods=['GET'])
 @login_required
@@ -337,6 +335,17 @@ def api_create_event():
     db.save_event(new_event)
     events.append(new_event)
     return jsonify({'status': 'success', 'event': new_event})
+
+@app.route('/api/profile/events/<int:event_id>', methods=['DELETE'])
+@login_required
+def api_delete_event(event_id):
+    user_id = session.get('user_id')
+    global events
+    if not any(e.get('id') == event_id and e.get('user_id') == user_id for e in events):
+        return jsonify({'status': 'error', 'message': 'Event not found'}), 404
+    db.delete_event(event_id, user_id)
+    events = [e for e in events if not (e.get('id') == event_id and e.get('user_id') == user_id)]
+    return jsonify({'status': 'success'})
 
 @app.route('/api/upload/image', methods=['POST'])
 @login_required
@@ -391,18 +400,31 @@ load_events()
 def serve_home():
     return render_template('home.html')
 
-@app.route('/login', methods=['GET'])
+# The writer area is reached by its own address; it is not linked from the public menu.
+@app.route('/writers/login', methods=['GET'])
 def serve_login():
     return render_template('login.html')
 
-@app.route('/register', methods=['GET'])
+@app.route('/writers/register', methods=['GET'])
 def serve_register():
-    return render_template('register.html')
+    return render_template(
+        'register.html',
+        registration_open=writer_registration_open(),
+        invite_required=bool(WRITER_INVITE_CODE),
+    )
 
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for('serve_home'))
+
+def writer_registration_open():
+    """Writer accounts are created with the council's invite code.
+
+    With no code configured, registration is closed in production and left
+    open in local development.
+    """
+    return bool(WRITER_INVITE_CODE) or os.environ.get('FLASK_ENV') != 'production'
 
 @app.route('/api/register', methods=['POST'])
 @limiter.limit("5 per hour")
@@ -410,6 +432,12 @@ def api_register():
     data = request.get_json(silent=True)
     if not isinstance(data, dict):
         return jsonify({'status': 'error', 'message': 'A valid registration request is required'}), 400
+    if not writer_registration_open():
+        return jsonify({'status': 'error', 'message': 'Writer registration is closed. Contact the council ICT unit for an account.'}), 403
+    if WRITER_INVITE_CODE:
+        invite_code = data.get('invite_code', '')
+        if not isinstance(invite_code, str) or not hmac.compare_digest(invite_code.strip().encode(), WRITER_INVITE_CODE.encode()):
+            return jsonify({'status': 'error', 'message': 'The invite code is not valid'}), 403
     username = data.get('username', '')
     password = data.get('password', '')
     if not isinstance(username, str) or not isinstance(password, str):
@@ -433,7 +461,7 @@ def api_register():
         'username': username,
         'password': hashed_pw,
         'id': max([u.get('id', 0) for u in users], default=0) + 1,
-        'role': 'citizen',
+        'role': 'writer',
         'name': username,
         'email': '',
         'avatar': ''

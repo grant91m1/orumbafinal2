@@ -1,17 +1,89 @@
   /* Ikeja LG Style - Global Theme for Orumba North (Solid Govt Design) */
 :root {
-  /* Colors - Ikeja LG inspired */
---primary-color: #006400; /* Government Green */
-  --primary-light: #15803d;
-  --secondary-color: #ffffff;
+  /* Colour palette: single source of truth for every colour used on the site */
+  /* Brand */
+  --color-brand-green: #006400;
+  --color-brand-green-dark: #004b00;
+  --color-gold: #ffd700;
+  /* Base */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  /* Green */
+  --color-green-25: #f8fff9;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+  --color-emerald-50: #ecfdf5;
+  --color-green-tint: #e6f7e9;
+  --color-sage: #f0f4f0;
+  --color-mint: #00b894;
+  /* Gray */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  /* Slate */
+  --color-slate-50: #f8fafc;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  /* Neutral */
+  --color-cloud: #dfe6e9;
+  --color-neutral-300: #dee2e6;
+  --color-neutral-600: #666666;
+  --color-neutral-800: #333333;
+  --color-charcoal: #212529;
+  --color-neutral-900: #111111;
+  /* Navy */
+  --color-navy-700: #0f3460;
+  --color-navy-800: #16213e;
+  --color-navy-900: #1a1a2e;
+  /* Red */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-400: #f87171;
+  --color-red-800: #991b1b;
+  --color-coral: #ff6b6b;
+  /* Blue */
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-400: #60a5fa;
+  --color-blue-900: #1e3a8a;
+  /* Yellow */
+  --color-yellow-50: #fefce8;
+  --color-yellow-400: #facc15;
+
+  /* Semantic colours - Ikeja LG inspired */
+  --primary-color: var(--color-brand-green); /* Government Green */
+  --primary-light: var(--color-green-700);
+  --secondary-color: var(--color-white);
   --accent-color: #00a651;
   --danger-color: #dc3545;
   --warning-color: #ffc107;
   --bg-color: #f8f9fa;
-  --card-bg: #ffffff;
-  --text-dark: #212529;
+  --card-bg: var(--color-white);
+  --text-dark: var(--color-charcoal);
   --text-light: #6c757d;
-  --text-muted: #6b7280;
+  --text-muted: var(--color-gray-500);
 
   /* Shadows */
   --shadow-sm: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
@@ -19,8 +91,9 @@
   --shadow-lg: 0 1rem 3rem rgba(0,0,0,0.175);
 
   /* Typography */
-  --font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-family-heading: 'Roboto Slab', Georgia, serif;
+  /* One typeface site-wide */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-heading: var(--font-family-base);
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -112,7 +185,7 @@ p { margin-bottom: 1rem; }
 /* Cards */
 .card {
   background-color: var(--card-bg);
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--color-neutral-300);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
@@ -193,7 +266,7 @@ p { margin-bottom: 1rem; }
 
 .ql-card {
   background-color: var(--card-bg);
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--color-neutral-300);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
@@ -240,7 +313,7 @@ p { margin-bottom: 1rem; }
 
 /* Footer */
 footer {
-  background-color: #212529;
+  background-color: var(--color-charcoal);
   color: var(--text-light);
   padding: var(--spacing-xl) 0;
   margin-top: var(--spacing-xl);

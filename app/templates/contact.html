@@ -3,60 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Orumba North Local Government Area — reach out for enquiries, services, and feedback.">
-    <title>Contact Us — Orumba North LGA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="description" content="Contact Orumba North Local Government Area: reach out for enquiries, services, and feedback.">
+    <title>Contact Us | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="stylesheet" href="/static/css/mobile-global.css">
     <style>
-        .contact-hero {
-            position: relative;
-            min-height: 45vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -75px;
-            padding-top: 75px;
-            background: linear-gradient(135deg, rgba(0,80,0,0.85), rgba(34,197,94,0.75)), url('/static/images/orumba-header-bakground-image2.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-        }
-        .contact-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.5rem; }
-        .contact-hero p { font-size: var(--text-lg); opacity: 0.95; }
 
         .contact-info-card { padding: 2rem; }
-        .contact-info-card h2 { font-size: var(--text-2xl); color: #111827; margin-bottom: 1.5rem; }
+        .contact-info-card h2 { font-size: var(--text-2xl); color: var(--color-gray-900); margin-bottom: 1.5rem; }
         .info-row { margin-bottom: 1.25rem; }
-        .info-row h4 { color: #16a34a; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem; }
-        .info-row p { color: #374151; font-size: var(--text-base); line-height: 1.5; margin: 0; }
+        .info-row h4 { color: var(--color-green-600); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem; }
+        .info-row p { color: var(--color-gray-700); font-size: var(--text-base); line-height: 1.5; margin: 0; }
 
         .contact-form-card { padding: 2rem; }
-        .contact-form-card h2 { font-size: var(--text-2xl); color: #111827; margin-bottom: 1.5rem; }
+        .contact-form-card h2 { font-size: var(--text-2xl); color: var(--color-gray-900); margin-bottom: 1.5rem; }
         .form-group { margin-bottom: 1.25rem; }
-        .form-group label { display: block; font-size: 0.9rem; font-weight: 500; color: #374151; margin-bottom: 0.4rem; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--color-gray-700); margin-bottom: 0.4rem; }
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 0.875rem 1rem;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--color-gray-300);
             border-radius: 10px;
             font-size: 1rem;
-            background: #fff;
+            background: var(--color-white);
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #22c55e;
+            border-color: var(--color-green-500);
             box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
         }
         .form-group textarea { resize: vertical; min-height: 140px; }
         .btn-submit {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, var(--color-green-500), var(--color-green-600));
             color: white;
             border: none;
             border-radius: 12px;
@@ -77,14 +67,14 @@
             font-weight: 500;
             display: none;
         }
-        .status-msg.success { display: block; background: #dcfce7; color: #166534; }
-        .status-msg.error { display: block; background: #fee2e2; color: #991b1b; }
+        .status-msg.success { display: block; background: var(--color-green-100); color: var(--color-green-800); }
+        .status-msg.error { display: block; background: var(--color-red-100); color: var(--color-red-800); }
     </style>
 </head>
 <body>
     {% include '_header.html' %}
 
-    <section class="contact-hero">
+    <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image2.jpg');">
         <div class="container">
             <h1>Contact Us</h1>
             <p>We are here to listen, assist, and serve you better.</p>
@@ -110,7 +100,7 @@
                     </div>
                     <div class="info-row">
                         <h4>Working Hours</h4>
-                        <p>Monday — Friday: 8:00 AM to 4:00 PM</p>
+                        <p>Monday to Friday: 8:00 AM to 4:00 PM</p>
                     </div>
                 </div>
 

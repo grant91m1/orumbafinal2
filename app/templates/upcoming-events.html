@@ -3,30 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
     <meta name="description" content="Upcoming events and community activities in Orumba North LGA.">
-    <title>Upcoming Events — Orumba North LGA</title>
+    <title>Upcoming Events | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="stylesheet" href="/static/css/mobile-global.css">
     <style>
-        .events-hero {
-            position: relative;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-            padding-top: 100px;
-            padding-bottom: 60px;
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image2.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            border-radius: 0 0 24px 24px;
-        }
-        .events-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-        .events-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 700px; margin: 0 auto 1.5rem; }
 
         .event-card {
             position: relative;
@@ -85,8 +73,6 @@
         .count-item .label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.85; }
 
         @media (max-width: 768px) {
-            .events-hero { min-height: 40vh; padding: 5rem 1rem 2rem; }
-            .events-hero h1 { font-size: var(--text-3xl); }
             .event-card { min-height: 320px; padding: 1.5rem; }
             .event-date { padding: 0.75rem 1rem; margin-bottom: 1rem; }
             .event-date .day { font-size: 1.5rem; }
@@ -98,7 +84,7 @@
 <body>
     {% include '_header.html' %}
 
-    <section class="events-hero">
+    <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image2.jpg');">
         <div class="container">
             <h1>Upcoming Events</h1>
             <p>Join our community activities, town halls, and development programmes. Stay informed and engaged.</p>
@@ -172,7 +158,7 @@
                     card.querySelector('h3').textContent = evt.title || 'Untitled Event';
                     card.querySelector('p').textContent = (evt.content || evt.description || '')
                         .replace(/<[^>]*>/g, '').substring(0, 140) || 'Join us for this community event.';
-                    card.querySelector('.event-location').textContent = `📍 ${evt.location || 'Orumba North LGA'}`;
+                    card.querySelector('.event-location').textContent = `${evt.location || 'Orumba North LGA'}`;
                     grid.appendChild(card);
                 });
 

@@ -1,0 +1,14 @@
+{#- Cards for named officials. Names, offices and photos come from app/people.py. -#}
+{% macro person_card(key, tag='h3', wide=False) -%}
+{%- set p = people[key] -%}
+<article class="person-card{{ ' person-card--wide' if wide }}">
+    <div class="person-photo"><img src="/static/images/{{ p.photo }}" alt="{{ p.name }}" loading="lazy"></div>
+    <div class="person-body">
+        <span class="person-role">{{ p.office }}</span>
+        <{{ tag }} class="person-name">{{ p.name }}</{{ tag }}>
+        {%- if caller is defined %}
+        <p class="person-bio">{{ caller() }}</p>
+        {%- endif %}
+    </div>
+</article>
+{%- endmacro %}

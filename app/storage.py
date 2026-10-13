@@ -17,6 +17,9 @@ MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 class StorageBackend:
     """Base class for storage backends."""
 
+    def _is_allowed_file(self, filename: str) -> bool:
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
     def _exceeds_size_limit(self, file) -> bool:
         stream = file.stream
         position = stream.tell()
@@ -91,9 +94,6 @@ class LocalStorage(StorageBackend):
     def get_file_url(self, filepath: str) -> str:
         return f"/{filepath.lstrip('/')}"
 
-    def _is_allowed_file(self, filename: str) -> bool:
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 class CloudStorage(StorageBackend):
     """Supabase Storage backend for production uploads."""
@@ -139,9 +139,6 @@ class CloudStorage(StorageBackend):
 
     def get_file_url(self, filepath: str) -> str:
         return self.client.storage.from_(self.bucket_name).get_public_url(filepath.lstrip('/'))
-
-    def _is_allowed_file(self, filename: str) -> bool:
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 def get_storage_backend() -> StorageBackend:

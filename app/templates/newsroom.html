@@ -3,28 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Official newsroom of Orumba North LGA — press releases, announcements, and media updates.">
-    <title>Newsroom — Orumba North LGA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="description" content="Official newsroom of Orumba North LGA: press releases, announcements, and media updates.">
+    <title>Newsroom | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="stylesheet" href="/static/css/mobile-global.css">
     <style>
-        .news-hero {
-            position: relative;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -75px;
-            padding-top: 75px;
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)), url('/static/images/orumba-header-bakground-image3.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-        }
-        .news-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-        .news-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 700px; margin: 0 auto; }
 
         .featured-article {
             border-radius: var(--radius-lg);
@@ -53,14 +43,14 @@
             padding: 2.5rem 2rem;
         }
         .featured-article .article-body p {
-            color: #374151;
+            color: var(--color-gray-700);
             line-height: 1.8;
             font-size: var(--text-base);
             margin-bottom: 1.5rem;
         }
         .featured-article .article-body p:last-of-type { margin-bottom: 0; }
         .featured-article .article-meta {
-            color: #6b7280;
+            color: var(--color-gray-500);
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
@@ -80,7 +70,7 @@
             box-shadow: 0 12px 40px rgba(0,0,0,0.12);
         }
         .news-card .news-meta {
-            color: #166534;
+            color: var(--color-green-800);
             font-size: 0.8rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -89,25 +79,25 @@
         }
         .news-card h3 {
             font-size: var(--text-lg);
-            color: #111827;
+            color: var(--color-gray-900);
             margin-bottom: 0.75rem;
             line-height: 1.3;
         }
         .news-card p {
-            color: #4b5563;
+            color: var(--color-gray-600);
             line-height: 1.6;
             font-size: var(--text-base);
             margin-bottom: 1.5rem;
             flex: 1;
         }
         .news-card .news-date {
-            color: #6b7280;
+            color: var(--color-gray-500);
             font-size: 0.85rem;
         }
         .news-card .read-more {
             display: inline-block;
             margin-top: 1rem;
-            background: linear-gradient(135deg, #006400, #15803d);
+            background: linear-gradient(135deg, var(--color-brand-green), var(--color-green-700));
             color: white;
             padding: 0.6rem 1.5rem;
             border-radius: 25px;
@@ -126,7 +116,7 @@
         .category-tag {
             display: inline-block;
             background: rgba(34,197,94,0.1);
-            color: #166534;
+            color: var(--color-green-800);
             padding: 0.5rem 1.25rem;
             border-radius: 25px;
             font-weight: 500;
@@ -137,7 +127,7 @@
         .category-tag:hover { background: rgba(34,197,94,0.2); }
 
         .load-more-btn {
-            background: linear-gradient(135deg, #006400, #15803d);
+            background: linear-gradient(135deg, var(--color-brand-green), var(--color-green-700));
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -152,8 +142,6 @@
         .load-more-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         @media (max-width: 768px) {
-            .news-hero { min-height: 35vh; padding: 6rem 1rem 3rem; }
-            .news-hero h1 { font-size: var(--text-3xl); }
             .featured-article .article-header { padding: 2rem 1.5rem; }
             .featured-article .article-header h2 { font-size: var(--text-xl); }
             .featured-article .article-body { padding: 1.5rem; }
@@ -164,21 +152,21 @@
 <body>
     {% include '_header.html' %}
 
-    <section class="news-hero">
+    <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image3.jpg');">
         <div class="container">
             <h1>Newsroom</h1>
             <p>Official press releases, announcements, and media updates from Orumba North Local Government.</p>
         </div>
     </section>
 
-    <section class="section-padding" style="background: #f8fafc;">
+    <section class="section-padding" style="background: var(--color-slate-50);">
         <div class="container">
             <!-- Upcoming Events Banner -->
             <a href="/upcoming-events" style="display: block; text-decoration: none; margin-bottom: 2rem;">
-                <div style="background: linear-gradient(135deg, #006400, #15803d); border-radius: var(--radius-lg); padding: 1.25rem 2rem; color: white; display: flex; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 8px 24px rgba(34,197,94,0.3); transition: transform 0.3s;">
+                <div style="background: linear-gradient(135deg, var(--color-brand-green), var(--color-green-700)); border-radius: var(--radius-lg); padding: 1.25rem 2rem; color: white; display: flex; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 8px 24px rgba(34,197,94,0.3); transition: transform 0.3s;">
                     <div>
                         <div style="font-size: 0.85rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem;">Don't Miss Out</div>
-                        <div style="font-size: 1.25rem; font-weight: 700;">📅 View Upcoming Community Events</div>
+                        <div style="font-size: 1.25rem; font-weight: 700;">View Upcoming Community Events</div>
                     </div>
                     <div style="font-size: 1.5rem; flex-shrink: 0;">→</div>
                 </div>
@@ -198,7 +186,7 @@
 
             <!-- Categories -->
             <div style="margin-top: 4rem; max-width: 700px;">
-                <h3 style="color: #111827; margin-bottom: 1.5rem; font-size: var(--text-xl);">Categories</h3>
+                <h3 style="color: var(--color-gray-900); margin-bottom: 1.5rem; font-size: var(--text-xl);">Categories</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
                     <span class="category-tag">Administration</span>
                     <span class="category-tag">Health</span>

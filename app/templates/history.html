@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
     <title>History of Orumba North</title>
     <link rel="stylesheet" href="/static/css/global-theme.css" />
 
@@ -43,7 +47,7 @@
         
         .history-hero h1 {
             font-size: 3rem;
-            color: #ffffff;
+            color: var(--color-white);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             margin-bottom: 1rem;
             font-weight: 700;
@@ -51,7 +55,7 @@
         
         .history-hero p {
             font-size: 1.2rem;
-            color: #dfe6e9;
+            color: var(--color-cloud);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             max-width: 600px;
         }
@@ -69,7 +73,7 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #dfe6e9;
+            color: var(--color-cloud);
             cursor: pointer;
             padding: 1rem;
             width: 100%;
@@ -92,7 +96,7 @@
 
         .collapsible.active {
             background: rgba(0, 184, 148, 0.3);
-            border-bottom: 3px solid #00b894;
+            border-bottom: 3px solid var(--color-mint);
         }
 
         /* Glass morphism content panels */
@@ -107,12 +111,12 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 0 0 12px 12px;
             margin-bottom: 1rem;
-            color: #dfe6e9;
+            color: var(--color-cloud);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
 
         .content p {
-            color: #dfe6e9;
+            color: var(--color-cloud);
             line-height: 1.6;
             margin: 0;
             opacity: 0.9;
@@ -139,7 +143,7 @@
             box-shadow: 0 4px 20px rgba(0, 184, 148, 0.4);
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 3px solid #00b894;
+            border: 3px solid var(--color-mint);
         }
 
         .image-container img:hover {
@@ -148,7 +152,7 @@
         }
 
         .image-container p {
-            color: #dfe6e9;
+            color: var(--color-cloud);
             margin-top: 1rem;
             font-weight: 600;
         }
@@ -161,7 +165,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding: 1.5rem;
             text-align: center;
-            color: #dfe6e9;
+            color: var(--color-cloud);
             font-size: 0.9rem;
         }
 

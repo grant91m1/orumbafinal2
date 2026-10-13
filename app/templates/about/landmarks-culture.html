@@ -3,98 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover the landmarks and rich cultural heritage of Orumba North LGA — Agulu Lake, New Yam Festival, and more.">
-    <title>Landmarks &amp; Culture — Orumba North LGA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="description" content="Discover the landmarks and rich cultural heritage of Orumba North LGA: Agulu Lake, New Yam Festival, and more.">
+    <title>Landmarks &amp; Culture | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="stylesheet" href="/static/css/mobile-global.css">
-    <style>
-        .culture-hero {
-            position: relative;
-            min-height: 55vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -75px;
-            padding-top: 75px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image3.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-        }
-        .culture-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-        .culture-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 600px; margin: 0 auto; }
-
-        .culture-card { padding: 2.5rem 2rem; text-align: center; height: 100%; }
-        .culture-icon { width: 64px; height: 64px; margin: 0 auto 1.5rem; }
-        .culture-card h2 { font-size: var(--text-xl); color: #111827; margin-bottom: 0.75rem; }
-        .culture-card p { color: #4b5563; line-height: 1.7; font-size: var(--text-base); }
-    </style>
 </head>
 <body>
     {% include '_header.html' %}
 
-    <section class="culture-hero">
+    <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image2.jpg');">
         <div class="container">
             <h1>Landmarks &amp; Culture</h1>
-            <p>Where tradition meets progress — explore the heritage that defines our identity.</p>
+            <p>Where tradition meets progress. Explore the heritage that defines our identity.</p>
         </div>
     </section>
 
+    <nav class="subnav" aria-label="About Orumba North">
+        <div class="container">
+            <ul>
+                <li><a href="/about">Overview</a></li>
+                <li><a href="/about/history">History</a></li>
+                <li><a href="/about/landmarks-culture" aria-current="page">Landmarks &amp; Culture</a></li>
+                <li><a href="/about/people">People</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <section class="section-padding">
         <div class="container">
-            <div class="grid-responsive-3">
-                <div class="glass-card culture-card">
-                    <svg class="culture-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <div class="section-head">
+                <h2>Places and traditions</h2>
+                <p>The landmarks, festivals and institutions that carry our heritage forward.</p>
+            </div>
+            <div class="feature-grid feature-grid--3">
+                <article class="feature-card">
                     <h2>Agulu Lake</h2>
                     <p>A mystical freshwater lake surrounded by legends of sacred crocodiles and ancient fishing traditions. A major cultural landmark and emerging eco-tourism destination in Anambra State.</p>
-                </div>
-                <div class="glass-card culture-card">
-                    <svg class="culture-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 1l1.98 2.61L17 5.5l-2.61 1.98L15 9.5l2.61 1.98L17 13.5l-1.98 2.61L15 17.5l-2.61-1.98L11 19.5l-1.98 2.61L7 19.5l-2.61-1.98L4.5 17l1.98-2.61L6 13.5l2.61-1.98L8 9.5l-1.98-2.61L7 5.5l2.61-1.98L11 4.5z"/></svg>
+                </article>
+                <article class="feature-card">
                     <h2>Igbo-Ukwu Bronzes</h2>
-                    <p>Nearby Igbo-Ukwu holds 9th-century bronze artifacts that reveal a sophisticated metallurgical tradition predating European contact — a testament to the depth of Igbo civilization.</p>
-                </div>
-                <div class="glass-card culture-card">
-                    <svg class="culture-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <p>Nearby Igbo-Ukwu holds 9th-century bronze artifacts that reveal a sophisticated metallurgical tradition predating European contact, a testament to the depth of Igbo civilization.</p>
+                </article>
+                <article class="feature-card">
                     <h2>New Yam Festival (Iri Ji)</h2>
-                    <p>Our most celebrated annual festival — a thanksgiving for harvest featuring masquerades, traditional wrestling, music, and communal feasting that brings all wards together.</p>
-                </div>
-                <div class="glass-card culture-card">
-                    <svg class="culture-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
+                    <p>Our most celebrated annual festival, a thanksgiving for harvest featuring masquerades, traditional wrestling, music, and communal feasting that brings all wards together.</p>
+                </article>
+                <article class="feature-card">
                     <h2>Nri Sacred Heritage</h2>
                     <p>Orumba North carries the spiritual legacy of Nri, the ancient ritual capital of the Igbo people. Traditional title systems and sacred groves preserve this living connection to the past.</p>
-                </div>
-                <div class="glass-card culture-card">
-                    <svg class="culture-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </article>
+                <article class="feature-card">
                     <h2>Agricultural Heritage</h2>
                     <p>Known as the yam capital of Anambra, our communities maintain traditional farming techniques, communal labour systems, and vibrant market days that have sustained generations.</p>
-                </div>
-                <div class="glass-card culture-card">
-                    <svg class="culture-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 17c3.31 0 6-2.69 6-6 0-.98-.23-1.9-.64-2.73l1.54-1.54c.56.92.89 2 .89 3.27 0 3.31-2.69 6-6 6-.98 0-1.9-.23-2.73-.64l-1.54 1.54C10.1 16.77 11.02 17 12 17zm0-12c-3.31 0-6 2.69-6 6 0 .98.23 1.9.64 2.73l-1.54 1.54c-.56-.92-.89-2-.89-3.27 0-3.31 2.69-6 6-6 .98 0 1.9.23 2.73.64l1.54-1.54C13.9 5.23 12.98 5 12 5z"/></svg>
+                </article>
+                <article class="feature-card">
                     <h2>Traditional Titles</h2>
-                    <p>The Ozo, Ichie, and Nze title systems remain vital institutions — community leaders who preserve customs, mediate disputes, and organise festivals that bind our society together.</p>
-                </div>
+                    <p>The Ozo, Ichie, and Nze title systems remain vital institutions: community leaders who preserve customs, mediate disputes, and organise festivals that bind our society together.</p>
+                </article>
+            </div>
         </div>
     </section>
 
     {% include '_footer.html' %}
-
-    <script>
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            revealObserver.observe(card);
-        });
-    </script>
 </body>
 </html>

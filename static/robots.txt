@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /writers/
+Disallow: /profile
 
 Sitemap: https://orumba-north.vercel.app/sitemap.xml
 

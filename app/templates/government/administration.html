@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-    <meta name="description" content="Administration structure of Orumba North LGA — Executive, Supervisors, HODs, and Councilors.">
-    <title>Administration — Orumba North LGA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="description" content="Administration structure of Orumba North LGA: Executive, Supervisors, HODs, and Councilors.">
+    <title>Administration | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
@@ -12,25 +16,11 @@
     <link rel="stylesheet" href="/static/css/mobile-global.css">
     <style>
         body {
-            background: linear-gradient(135deg, #f8fff9 0%, #e6f7e9 100%);
+            background: linear-gradient(135deg, var(--color-green-25) 0%, var(--color-green-tint) 100%);
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
-        .admin-hero {
-            position: relative;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -75px;
-            padding-top: 75px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image2.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-        }
-        .admin-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
-        .admin-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 600px; margin: 0 auto; }
 
         .admin-tabs {
             display: flex;
@@ -40,20 +30,6 @@
             margin-bottom: 2rem;
             padding: 0 1rem;
         }
-        .admin-tab-btn {
-            padding: 0.75rem 1.5rem;
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: var(--radius-lg);
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            color: #374151;
-            font-family: 'Inter', sans-serif;
-        }
-        .admin-tab-btn:hover { border-color: #22c55e; color: #22c55e; }
-        .admin-tab-btn.active { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border-color: #22c55e; }
 
         .admin-tab-content { display: none; animation: fadeIn 0.4s ease; }
         .admin-tab-content.active { display: block; }
@@ -69,23 +45,9 @@
         }
         .admin-grid--4cols { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
-        .admin-card {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-        .admin-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); border-color: #22c55e; }
-        .admin-avatar { width: 80px; height: 80px; margin: 0 auto 1.25rem; display: block; }
-        .admin-h4 { font-size: var(--text-lg); font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
-        .admin-role { color: #22c55e; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.75rem; }
-        .admin-description { color: #4b5563; line-height: 1.6; font-size: 0.9rem; }
 
-        .admin-section-title { font-size: var(--text-2xl); font-weight: 700; text-align: center; color: #111827; margin-bottom: 0.75rem; }
-        .admin-section-desc { color: #4b5563; text-align: center; max-width: 600px; margin: 0 auto 2rem; }
+        .admin-section-title { font-size: var(--text-2xl); font-weight: 700; text-align: center; color: var(--color-gray-900); margin-bottom: 0.75rem; }
+        .admin-section-desc { color: var(--color-gray-600); text-align: center; max-width: 600px; margin: 0 auto 2rem; }
 
         .mt-5 { margin-top: 2.5rem; }
         .text-center { text-align: center; }
@@ -93,21 +55,17 @@
         .btn-outline {
             display: inline-block;
             padding: 0.875rem 2rem;
-            border: 2px solid #22c55e;
-            color: #22c55e;
+            border: 2px solid var(--color-green-500);
+            color: var(--color-green-500);
             border-radius: var(--radius-lg);
             font-weight: 600;
             text-decoration: none;
             transition: all 0.25s ease;
         }
-        .btn-outline:hover { background: #22c55e; color: white; }
+        .btn-outline:hover { background: var(--color-green-500); color: white; }
 
         @media (max-width: 768px) {
-            .admin-hero { min-height: 40vh; padding: 5rem 1rem 2rem; }
-            .admin-hero h1 { font-size: var(--text-3xl); }
             .admin-tabs { gap: 0.5rem; }
-            .admin-tab-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
-            .admin-card { padding: 1.5rem; }
         }
         @media (max-width: 480px) {
             .admin-grid { grid-template-columns: 1fr; padding: 0 0.75rem; }
@@ -116,10 +74,11 @@
     </style>
 </head>
 <body>
+    {% from '_people.html' import person_card %}
     {% include '_header.html' %}
 
     <main>
-        <section class="admin-hero">
+        <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image2.jpg');">
             <div class="container">
                 <h1>Administration Structure</h1>
                 <p>Executive &middot; Legislative &middot; Supervisors &middot; Department Heads</p>
@@ -138,78 +97,66 @@
                 <!-- Executive -->
                 <div id="executive" class="admin-tab-content active">
                     <div class="admin-grid">
-                        <div class="admin-card fade-in-up">
-                            <img class="admin-avatar" src="/static/images/mayorimg3.JPG" alt="Hon. Barr. Casmir Chinonso Nwafor" loading="lazy" />
-                            <h4 class="admin-h4">Hon. Barr. Casmir Chinonso Nwafor</h4>
-                            <p class="admin-role">Executive Chairman</p>
-                            <p class="admin-description">Chief executive officer overseeing policy implementation, strategic planning, budget approval, and development initiatives across all 10 wards.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.1s">
-                            <svg class="admin-avatar" viewBox="0 0 100 100" fill="#22c55e"><circle cx="50" cy="50" r="45" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2"/><text x="50" y="62" text-anchor="middle" fill="#22c55e" font-size="40">&#128100;</text></svg>
-                            <h4 class="admin-h4">Hon. Ifesinachi Chukwurah</h4>
-                            <p class="admin-role">Vice Chairman</p>
-                            <p class="admin-description">Deputy executive leading community engagement, women's empowerment programmes, youth development, and social welfare initiatives.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.2s">
-                            <svg class="admin-avatar" viewBox="0 0 100 100" fill="#22c55e"><circle cx="50" cy="50" r="45" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="2"/><text x="50" y="62" text-anchor="middle" fill="#22c55e" font-size="40">&#128100;</text></svg>
-                            <h4 class="admin-h4">Secretary to the LGA</h4>
-                            <p class="admin-role">Head of Administration</p>
-                            <p class="admin-description">Coordinates all LGA operations, manages government records, facilitates inter-departmental communication, and ensures policy execution.</p>
-                        </div>
+                        {% call person_card('chairman', tag='h4') %}Chief executive officer overseeing policy implementation, strategic planning, budget approval, and development initiatives across all 10 wards.{% endcall %}
+                        {% call person_card('vice_chairman', tag='h4') %}Deputy executive leading community engagement, women's empowerment programmes, youth development, and social welfare initiatives.{% endcall %}
+                        <article class="person-card">
+                            <div class="person-photo person-photo--seal"><img src="/static/images/orumba-north-logo.jpg" alt="" loading="lazy"></div>
+                            <div class="person-body">
+                                <span class="person-role">Head of Administration</span>
+                                <h4 class="person-name">Secretary to the LGA</h4>
+                                <p class="person-bio">Coordinates all LGA operations, manages government records, facilitates inter-departmental communication, and ensures policy execution.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
 
                 <!-- Supervisors -->
                 <div id="supervisors" class="admin-tab-content">
                     <div class="admin-grid">
-                        <div class="admin-card fade-in-up">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35" fill="rgba(34,197,94,0.1)"/><text x="40" y="52" text-anchor="middle" fill="#22c55e" font-size="32">&#127973;</text></svg>
-                            <h4 class="admin-h4">Hon. Mrs Christiana Nwankwo</h4>
-                            <p class="admin-role">Health Supervisor</p>
-                            <p class="admin-description">Healthcare delivery, clinics management, vaccination programmes, and public health initiatives.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.1s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35" fill="rgba(34,197,94,0.1)"/><text x="40" y="52" text-anchor="middle" fill="#22c55e" font-size="32">&#127979;</text></svg>
-                            <h4 class="admin-h4">Education Supervisor</h4>
-                            <p class="admin-role">Schools &amp; Training</p>
-                            <p class="admin-description">School infrastructure, teacher training, scholarships, and adult literacy programmes.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.2s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35" fill="rgba(34,197,94,0.1)"/><text x="40" y="52" text-anchor="middle" fill="#22c55e" font-size="32">&#128679;</text></svg>
-                            <h4 class="admin-h4">Engr. Austin Ganco O.</h4>
-                            <p class="admin-role">Works Supervisor</p>
-                            <p class="admin-description">Road construction, drainage systems, infrastructure projects, and public works.</p>
-                        </div>
+                        {% call person_card('health_supervisor', tag='h4') %}Healthcare delivery, clinics management, vaccination programmes, and public health initiatives.{% endcall %}
+                        <article class="person-card">
+                            <div class="person-photo person-photo--seal"><img src="/static/images/orumba-north-logo.jpg" alt="" loading="lazy"></div>
+                            <div class="person-body">
+                                <span class="person-role">Schools &amp; Training</span>
+                                <h4 class="person-name">Education Supervisor</h4>
+                                <p class="person-bio">School infrastructure, teacher training, scholarships, and adult literacy programmes.</p>
+                            </div>
+                        </article>
+                        {% call person_card('works_supervisor', tag='h4') %}Road construction, drainage systems, infrastructure projects, and public works.{% endcall %}
                     </div>
                 </div>
 
                 <!-- HODs -->
                 <div id="hod" class="admin-tab-content">
                     <div class="admin-grid admin-grid--4cols">
-                        <div class="admin-card fade-in-up">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35"/><text x="40" y="52" text-anchor="middle" fill="white" font-size="32">&#128187;</text></svg>
-                            <h4 class="admin-h4">ICT Director</h4>
-                            <p class="admin-role">Technology &amp; Innovation</p>
-                            <p class="admin-description">Digital services, website management, and data systems modernisation.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.1s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35"/><text x="40" y="52" text-anchor="middle" fill="white" font-size="32">&#128176;</text></svg>
-                            <h4 class="admin-h4">Finance Director</h4>
-                            <p class="admin-role">Budget &amp; Accounts</p>
-                            <p class="admin-description">Financial planning, revenue collection, and audit compliance.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.2s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35"/><text x="40" y="52" text-anchor="middle" fill="white" font-size="32">&#128101;</text></svg>
-                            <h4 class="admin-h4">HR Director</h4>
-                            <p class="admin-role">Personnel Management</p>
-                            <p class="admin-description">Staff recruitment, training programmes, and welfare administration.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.3s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35"/><text x="40" y="52" text-anchor="middle" fill="white" font-size="32">&#128208;</text></svg>
-                            <h4 class="admin-h4">Engineering Director</h4>
-                            <p class="admin-role">Public Works</p>
-                            <p class="admin-description">Civil works, maintenance, and technical project delivery.</p>
-                        </div>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Technology &amp; Innovation</span>
+                                <h4 class="person-name">ICT Director</h4>
+                                <p class="person-bio">Digital services, website management, and data systems modernisation.</p>
+                            </div>
+                        </article>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Budget &amp; Accounts</span>
+                                <h4 class="person-name">Finance Director</h4>
+                                <p class="person-bio">Financial planning, revenue collection, and audit compliance.</p>
+                            </div>
+                        </article>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Personnel Management</span>
+                                <h4 class="person-name">HR Director</h4>
+                                <p class="person-bio">Staff recruitment, training programmes, and welfare administration.</p>
+                            </div>
+                        </article>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Public Works</span>
+                                <h4 class="person-name">Engineering Director</h4>
+                                <p class="person-bio">Civil works, maintenance, and technical project delivery.</p>
+                            </div>
+                        </article>
                     </div>
                     <div class="text-center mt-5">
                         <a href="/departments" class="btn-outline">All Departments Directory &rarr;</a>
@@ -221,24 +168,27 @@
                     <h3 class="admin-section-title">Legislative Councilors</h3>
                     <p class="admin-section-desc">Ward-based representatives ensuring community voice in LGA governance and legislation.</p>
                     <div class="admin-grid">
-                        <div class="admin-card fade-in-up">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35" fill="rgba(34,197,94,0.1)"/><text x="40" y="52" text-anchor="middle" fill="#22c55e" font-size="32">&#128100;</text></svg>
-                            <h4 class="admin-h4">Hon. Ward A Rep</h4>
-                            <p class="admin-role">Ward A Councilor</p>
-                            <p class="admin-description">Community infrastructure and youth empowerment focus.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.1s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35" fill="rgba(34,197,94,0.1)"/><text x="40" y="52" text-anchor="middle" fill="#22c55e" font-size="32">&#128100;</text></svg>
-                            <h4 class="admin-h4">Hon. Ward B Rep</h4>
-                            <p class="admin-role">Ward B Councilor</p>
-                            <p class="admin-description">Agriculture development and market improvements.</p>
-                        </div>
-                        <div class="admin-card fade-in-up" style="animation-delay:0.2s">
-                            <svg class="admin-avatar" viewBox="0 0 80 80" fill="#22c55e"><circle cx="40" cy="40" r="35" fill="rgba(34,197,94,0.1)"/><text x="40" y="52" text-anchor="middle" fill="#22c55e" font-size="32">&#128100;</text></svg>
-                            <h4 class="admin-h4">Hon. Ward C Rep</h4>
-                            <p class="admin-role">Ward C Councilor</p>
-                            <p class="admin-description">Health services and education advocacy.</p>
-                        </div>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Ward A Councilor</span>
+                                <h4 class="person-name">Hon. Ward A Rep</h4>
+                                <p class="person-bio">Community infrastructure and youth empowerment focus.</p>
+                            </div>
+                        </article>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Ward B Councilor</span>
+                                <h4 class="person-name">Hon. Ward B Rep</h4>
+                                <p class="person-bio">Agriculture development and market improvements.</p>
+                            </div>
+                        </article>
+                        <article class="person-card">
+                            <div class="person-body">
+                                <span class="person-role">Ward C Councilor</span>
+                                <h4 class="person-name">Hon. Ward C Rep</h4>
+                                <p class="person-bio">Health services and education advocacy.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>

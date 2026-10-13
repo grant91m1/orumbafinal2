@@ -2,264 +2,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-    <meta name="description" content="The history of Orumba North LGA — from the ancient Nri Kingdom to modern development.">
-    <title>History — Orumba North LGA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="description" content="The history of Orumba North LGA: from the ancient Nri Kingdom to modern development.">
+    <title>History | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="stylesheet" href="/static/css/mobile-global.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body {
-            background: #f8fff9;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            color: #111827;
-        }
-
-        .history-hero {
-            position: relative;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: -75px;
-            padding-top: 75px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image3.jpg') center/cover no-repeat;
-            color: white;
-            text-align: center;
-        }
-        .history-hero h1 {
-            font-size: var(--text-4xl);
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-        .history-hero p {
-            font-size: var(--text-lg);
-            opacity: 0.95;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .timeline-section {
-            padding: 4rem 1rem;
-            background: linear-gradient(to bottom, #f0fdf4, #ffffff);
-        }
-
-        .timeline {
-            max-width: 850px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 28px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #22c55e, #16a34a);
-            border-radius: 3px;
-        }
-        @media (min-width: 768px) {
-            .timeline::before { left: 50%; transform: translateX(-50%); }
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
-            position: relative;
-            align-items: flex-start;
-        }
-        @media (min-width: 768px) {
-            .timeline-item {
-                gap: 2rem;
-                margin-bottom: 3rem;
-            }
-            .timeline-item:nth-child(odd) { flex-direction: row-reverse; text-align: right; }
-            .timeline-item:nth-child(odd) .timeline-icon-wrap { margin-left: auto; }
-            .timeline-item:nth-child(odd) .timeline-card { align-items: flex-end; }
-            .timeline-item:nth-child(odd) .timeline-card .era { margin-left: auto; }
-        }
-
-        .timeline-icon-wrap {
-            flex-shrink: 0;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.6rem;
-            box-shadow: 0 0 20px rgba(34,197,94,0.4);
-            z-index: 2;
-        }
-        @media (min-width: 768px) {
-            .timeline-icon-wrap {
-                width: 64px;
-                height: 64px;
-                font-size: 1.8rem;
-            }
-        }
-
-        .timeline-card {
-            flex: 1;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        @media (min-width: 768px) {
-            .timeline-card { padding: 2rem; }
-        }
-
-        .timeline-card .era {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #16a34a;
-            background: #dcfce7;
-            padding: 0.35rem 0.9rem;
-            border-radius: 20px;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .timeline-card h3 {
-            font-size: var(--text-lg);
-            color: #111827;
-            margin-bottom: 0.6rem;
-            font-weight: 700;
-        }
-        .timeline-card p {
-            color: #4b5563;
-            line-height: 1.7;
-            font-size: 0.95rem;
-            margin: 0;
-        }
-        .timeline-card .year {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: #22c55e;
-            margin-bottom: 0.35rem;
-        }
-
-        @media (max-width: 480px) {
-            .history-hero { min-height: 40vh; padding: 5rem 1rem 2rem; }
-            .history-hero h1 { font-size: var(--text-2xl); }
-            .timeline-section { padding: 2.5rem 0.75rem; }
-            .timeline::before { left: 22px; }
-            .timeline-icon-wrap { width: 44px; height: 44px; font-size: 1.3rem; }
-            .timeline-item { gap: 0.75rem; margin-bottom: 1.75rem; }
-            .timeline-card { padding: 1.25rem; }
-            .timeline-card h3 { font-size: 1.1rem; }
-            .timeline-card p { font-size: 0.88rem; }
-        }
-
-        @media (max-width: 768px) {
-            .timeline-item { flex-direction: column !important; text-align: left !important; }
-            .timeline-item:nth-child(odd) { flex-direction: column !important; text-align: left !important; }
-            .timeline-item:nth-child(odd) .timeline-icon-wrap { margin-left: 0; }
-            .timeline-item:nth-child(odd) .timeline-card { align-items: flex-start; }
-            .timeline-item:nth-child(odd) .timeline-card .era { margin-left: 0; }
-        }
-    </style>
 </head>
 <body>
     {% include '_header.html' %}
 
-    <section class="history-hero">
+    <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image3.jpg');">
         <div class="container">
+            <span class="page-banner-eyebrow">About</span>
             <h1>Our History</h1>
-            <p>From ancient kingdoms to modern governance — a story of resilience, culture, and progress.</p>
+            <p>From ancient kingdoms to modern governance: a story of resilience, culture, and progress.</p>
         </div>
     </section>
 
-    <section class="timeline-section">
-        <div class="timeline">
+    <nav class="subnav" aria-label="About Orumba North">
+        <div class="container">
+            <ul>
+                <li><a href="/about">Overview</a></li>
+                <li><a href="/about/history" aria-current="page">History</a></li>
+                <li><a href="/about/landmarks-culture">Landmarks &amp; Culture</a></li>
+                <li><a href="/about/people">People</a></li>
+            </ul>
+        </div>
+    </nav>
 
-            <div class="timeline-item">
-                <div class="timeline-icon-wrap"><i class="fa-solid fa-crown"></i></div>
-                <div class="timeline-card">
-                    <span class="era">Pre-Colonial Era</span>
-                    <div class="year">c. 1000 AD</div>
-                    <h3>The Nri Kingdom Heartland</h3>
-                    <p>The lands of present-day Orumba North formed part of the influential Nri Kingdom, one of the oldest kingdoms in Nigeria. The area was known for its advanced bronze casting, spiritual traditions, and the peaceful spread of Igbo culture across the region.</p>
-                </div>
+    <section class="section-padding section-tint">
+        <div class="container">
+            <div class="section-head">
+                <h2>A timeline of Orumba North</h2>
+                <p>Key periods that shaped the area, from the earliest kingdoms to the present day.</p>
             </div>
-
-            <div class="timeline-item">
-                <div class="timeline-icon-wrap"><i class="fa-solid fa-scroll"></i></div>
-                <div class="timeline-card">
-                    <span class="era">Colonial Period</span>
-                    <div class="year">c. 1900 AD</div>
-                    <h3>British Administration &amp; Missionary Influence</h3>
-                    <p>With the arrival of British colonial administrators, warrant chief systems were introduced. Christian missions established schools and churches, laying the educational foundation that would produce generations of leaders and professionals from the area.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="timeline-card">
-                    <span class="era">Biafran War</span>
-                    <div class="year">1967 — 1970</div>
-                    <h3>A Region of Resilience</h3>
-                    <p>During the Nigerian Civil War, Orumba North served as a vital food production zone, sustaining communities through communal farming. The war left lasting memories of sacrifice and unity that continue to define the area's communal spirit.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-icon-wrap"><i class="fa-solid fa-building-columns"></i></div>
-                <div class="timeline-card">
-                    <span class="era">LGA Creation</span>
-                    <div class="year">1991</div>
-                    <h3>Orumba North is Born</h3>
-                    <p>The Local Government Area was formally created during the Ibrahim Babangida administration, with its headquarters at Ihitenesa. The new LGA brought direct governance closer to the people, spanning 10 wards and uniting diverse communities under one administrative umbrella.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-icon-wrap"><i class="fa-solid fa-rocket"></i></div>
-                <div class="timeline-card">
-                    <span class="era">Modern Development</span>
-                    <div class="year">2000 — Present</div>
-                    <h3>Infrastructure &amp; Growth</h3>
-                    <p>The 21st century has seen significant infrastructure investment, educational expansion, and the rise of Agulu Lake as a tourism destination. With a population exceeding 200,000, Orumba North continues to grow as a hub of agriculture, commerce, and culture in Anambra State.</p>
-                </div>
-            </div>
-
+            <ol class="timeline-v">
+                <li>
+                    <article class="timeline-entry">
+                        <div class="timeline-meta">
+                            <span class="timeline-year">c. 1000 AD</span>
+                            <span class="timeline-era">Pre-Colonial Era</span>
+                        </div>
+                        <h3>The Nri Kingdom Heartland</h3>
+                        <p>The lands of present-day Orumba North formed part of the influential Nri Kingdom, one of the oldest kingdoms in Nigeria. The area was known for its advanced bronze casting, spiritual traditions, and the peaceful spread of Igbo culture across the region.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="timeline-entry">
+                        <div class="timeline-meta">
+                            <span class="timeline-year">c. 1900 AD</span>
+                            <span class="timeline-era">Colonial Period</span>
+                        </div>
+                        <h3>British Administration &amp; Missionary Influence</h3>
+                        <p>With the arrival of British colonial administrators, warrant chief systems were introduced. Christian missions established schools and churches, laying the educational foundation that would produce generations of leaders and professionals from the area.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="timeline-entry">
+                        <div class="timeline-meta">
+                            <span class="timeline-year">1967 to 1970</span>
+                            <span class="timeline-era">Biafran War</span>
+                        </div>
+                        <h3>A Region of Resilience</h3>
+                        <p>During the Nigerian Civil War, Orumba North served as a vital food production zone, sustaining communities through communal farming. The war left lasting memories of sacrifice and unity that continue to define the area's communal spirit.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="timeline-entry">
+                        <div class="timeline-meta">
+                            <span class="timeline-year">1991</span>
+                            <span class="timeline-era">LGA Creation</span>
+                        </div>
+                        <h3>Orumba North is Born</h3>
+                        <p>The Local Government Area was formally created during the Ibrahim Babangida administration, with its headquarters at Ihitenesa. The new LGA brought direct governance closer to the people, spanning 10 wards and uniting diverse communities under one administrative umbrella.</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="timeline-entry">
+                        <div class="timeline-meta">
+                            <span class="timeline-year">2000 to present</span>
+                            <span class="timeline-era">Modern Development</span>
+                        </div>
+                        <h3>Infrastructure &amp; Growth</h3>
+                        <p>The 21st century has seen significant infrastructure investment, educational expansion, and the rise of Agulu Lake as a tourism destination. With a population exceeding 200,000, Orumba North continues to grow as a hub of agriculture, commerce, and culture in Anambra State.</p>
+                    </article>
+                </li>
+            </ol>
         </div>
     </section>
 
     {% include '_footer.html' %}
-
-    <script>
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.timeline-item').forEach((item, i) => {
-            item.style.opacity = '0';
-            item.style.transform = i % 2 === 0 ? 'translateX(-20px)' : 'translateX(20px)';
-            item.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
-            revealObserver.observe(item);
-        });
-    </script>
 </body>
 </html>
-

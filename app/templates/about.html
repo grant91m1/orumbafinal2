@@ -3,142 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about Orumba North Local Government Area — our history, culture, landmarks, and people.">
-    <title>About — Orumba North LGA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="description" content="Learn about Orumba North Local Government Area: our history, culture, landmarks, and people.">
+    <title>About | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="stylesheet" href="/static/css/mobile-global.css">
-    <style>
-.about-hero {
-            position: relative;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin: 0 auto;
-            padding-top: 75px;
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-            width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image.jpg') center/cover no-repeat;
-        }
-        .about-hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            padding: 2rem 1rem;
-            max-width: 800px;
-        }
-        .about-hero-content h1 {
-            font-size: var(--text-4xl);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-        .about-hero-content p {
-            font-size: var(--text-xl);
-            opacity: 0.95;
-        }
-
-        .about-card {
-            padding: 2.5rem 2rem;
-            text-align: center;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .about-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1;
-        }
-        .about-card h2 {
-            font-size: var(--text-xl);
-            margin-bottom: 1rem;
-            color: #111827;
-        }
-        .about-card p {
-            color: #4b5563;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        .page-link {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(34,197,94,0.3);
-        }
-        .page-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(34,197,94,0.4);
-        }
-    </style>
 </head>
 <body>
     {% include '_header.html' %}
 
-    <section class="about-hero">
+    <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image.jpg');">
         <div class="container">
-            <div class="about-hero-content">
-                <h1>About Orumba North</h1>
-                <p>Discover our rich heritage, vibrant culture, and the people who make our community thrive.</p>
-            </div>
+            <h1>About Orumba North</h1>
+            <p>Discover our rich heritage, vibrant culture, and the people who make our community thrive.</p>
+        </div>
     </section>
+
+    <nav class="subnav" aria-label="About Orumba North">
+        <div class="container">
+            <ul>
+                <li><a href="/about" aria-current="page">Overview</a></li>
+                <li><a href="/about/history">History</a></li>
+                <li><a href="/about/landmarks-culture">Landmarks &amp; Culture</a></li>
+                <li><a href="/about/people">People</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <section class="section-padding">
         <div class="container">
+            <div class="section-head">
+                <h2>Get to know Orumba North</h2>
+                <p>Three ways to explore who we are, where we come from, and what we value.</p>
+            </div>
             <div class="grid-responsive-3">
-                <div class="glass-card about-card">
-                    <div class="about-icon">&#128220;</div>
-                    <h2>Our History</h2>
-                    <p>From the ancient Nri Kingdom to modern local governance, explore the journey that has shaped Orumba North into a beacon of progress in Anambra State.</p>
-                    <a href="/about/history" class="page-link">Explore History</a>
-                </div>
-                <div class="glass-card about-card">
-                    <div class="about-icon">&#127963;</div>
-                    <h2>Landmarks &amp; Culture</h2>
-                    <p>Experience sacred sites, time-honoured festivals, and the living traditions that define the identity of our people across all ten wards.</p>
-                    <a href="/about/landmarks-culture" class="page-link">Discover Culture</a>
-                </div>
-                <div class="glass-card about-card">
-                    <div class="about-icon">&#128107;</div>
-                    <h2>Our People</h2>
-                    <p>Meet the resilient, enterprising, and community-minded residents who drive innovation, agriculture, and development in Orumba North.</p>
-                    <a href="/about/people" class="page-link">Meet Our People</a>
-                </div>
+                <a href="/about/history" class="info-card">
+                    <div class="info-card-media">
+                        <img src="/static/images/orumba-header-bakground-image.jpg" alt="Orumba North L.G.A. Headquarters signboard in Ajalli" loading="lazy">
+                    </div>
+                    <div class="info-card-body">
+                        <span class="info-card-label">History</span>
+                        <h3>Our History</h3>
+                        <p>From the ancient Nri Kingdom to modern local governance, explore the journey that has shaped Orumba North into a beacon of progress in Anambra State.</p>
+                        <span class="info-card-link">Explore History</span>
+                    </div>
+                </a>
+                <a href="/about/landmarks-culture" class="info-card">
+                    <div class="info-card-media">
+                        <img src="/static/images/orumba-header-bakground-image2.jpg" alt="Orumba North Local Government Secretariat, Ajalli" loading="lazy">
+                    </div>
+                    <div class="info-card-body">
+                        <span class="info-card-label">Heritage</span>
+                        <h3>Landmarks &amp; Culture</h3>
+                        <p>Experience sacred sites, time-honoured festivals, and the living traditions that define the identity of our people across all ten wards.</p>
+                        <span class="info-card-link">Discover Culture</span>
+                    </div>
+                </a>
+                <a href="/about/people" class="info-card">
+                    <div class="info-card-media">
+                        <img src="/static/images/orumba-header-bakground-image3.jpg" alt="Residents gathered at the council secretariat" loading="lazy">
+                    </div>
+                    <div class="info-card-body">
+                        <span class="info-card-label">Community</span>
+                        <h3>Our People</h3>
+                        <p>Meet the resilient, enterprising, and community-minded residents who drive innovation, agriculture, and development in Orumba North.</p>
+                        <span class="info-card-link">Meet Our People</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
     {% include '_footer.html' %}
-
-    <script>
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            revealObserver.observe(card);
-        });
-    </script>
 </body>
 </html>

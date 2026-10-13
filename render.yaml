@@ -12,6 +12,8 @@ services:
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY
         sync: false
+      - key: WRITER_INVITE_CODE
+        sync: false
       - key: SUPABASE_STORAGE_BUCKET
         value: uploads
       - key: USE_CLOUD_STORAGE

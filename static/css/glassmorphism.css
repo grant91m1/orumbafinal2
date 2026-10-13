@@ -20,7 +20,7 @@
 }
 
 .glass-card h3, .glass-card h4 {
-  color: #ffffff;
+  color: var(--color-white);
   font-weight: 600;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
@@ -42,12 +42,12 @@
 }
 
 .glass-card h3, .glass-card h4 {
-  color: #000;
+  color: var(--color-black);
   text-shadow: none;
 }
 
 .glass-card p {
-  color: #333;
+  color: var(--color-neutral-800);
 }
 
 /* Glass Hero */
@@ -207,10 +207,7 @@
 .stat-number {
   font-size: 4rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #FFD700 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-green-600);
   display: block;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;

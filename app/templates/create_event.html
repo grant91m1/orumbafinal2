@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
     <meta name="description" content="Create a new event for Orumba North LGA.">
-    <title>Create Event — Orumba North LGA</title>
+    <title>Create Event | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
@@ -15,7 +19,7 @@
         :root { --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
         body {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+            background: linear-gradient(135deg, var(--color-sky-50) 0%, var(--color-sky-100) 50%, var(--color-blue-100) 100%);
             background-attachment: fixed;
             min-height: 100vh;
             padding-top: 80px;
@@ -27,7 +31,7 @@
         main { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
 
         h1 {
-            color: #000;
+            color: var(--color-black);
             text-align: center;
             margin-bottom: 1.5rem;
             font-size: clamp(1.6rem, 5vw, 2.5rem);
@@ -50,7 +54,7 @@
             display: block;
             margin-bottom: 0.4rem;
             font-weight: 700;
-            color: #000;
+            color: var(--color-black);
             font-size: clamp(0.85rem, 2.5vw, 0.95rem);
         }
         input, textarea, select {
@@ -59,29 +63,29 @@
             font-size: 1rem;
             border-radius: var(--radius);
             border: 1px solid rgba(0,0,0,0.15);
-            background: #fff;
-            color: #000;
+            background: var(--color-white);
+            color: var(--color-black);
             font-weight: 600;
             font-family: var(--font-body);
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
             box-sizing: border-box;
         }
-        input::placeholder, textarea::placeholder { color: #666; font-weight: 500; }
+        input::placeholder, textarea::placeholder { color: var(--color-neutral-600); font-weight: 500; }
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #22c55e;
+            border-color: var(--color-green-500);
             box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
         }
         input[type="file"] {
             padding: 0.6rem;
             border: 1.5px dashed rgba(0,0,0,0.2);
-            background: #f8fafc;
-            color: #000;
+            background: var(--color-slate-50);
+            color: var(--color-black);
             font-weight: 600;
         }
         input[type="file"]::file-selector-button {
-            background: #111;
-            color: #fff;
+            background: var(--color-neutral-900);
+            color: var(--color-white);
             border: none;
             padding: 0.5rem 0.9rem;
             border-radius: 8px;
@@ -91,7 +95,7 @@
             font-family: var(--font-body);
             transition: background 0.25s ease;
         }
-        input[type="file"]::file-selector-button:hover { background: #000; }
+        input[type="file"]::file-selector-button:hover { background: var(--color-black); }
 
         .form-row {
             display: grid;
@@ -101,7 +105,7 @@
 
         #editor-container {
             height: clamp(200px, 30vh, 300px);
-            background: #fff;
+            background: var(--color-white);
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.15);
@@ -109,27 +113,27 @@
         .ql-toolbar.ql-snow {
             border: none;
             border-bottom: 1px solid rgba(0,0,0,0.1);
-            background: #f8fafc;
+            background: var(--color-slate-50);
             padding: 0.5rem 0.75rem;
         }
         .ql-toolbar.ql-snow .ql-picker-label,
         .ql-toolbar.ql-snow .ql-picker-item,
-        .ql-toolbar.ql-snow button { color: #000; stroke: #000; }
-        .ql-toolbar.ql-snow .ql-stroke { stroke: #000; }
-        .ql-toolbar.ql-snow .ql-fill { fill: #000; }
+        .ql-toolbar.ql-snow button { color: var(--color-black); stroke: var(--color-black); }
+        .ql-toolbar.ql-snow .ql-stroke { stroke: var(--color-black); }
+        .ql-toolbar.ql-snow .ql-fill { fill: var(--color-black); }
         .ql-toolbar.ql-snow button:hover .ql-stroke,
-        .ql-toolbar.ql-snow .ql-active .ql-stroke { stroke: #22c55e; }
-        .ql-container.ql-snow { border: none; background: #fff; }
-        .ql-editor { color: #000; font-size: 1rem; font-family: var(--font-body); min-height: clamp(160px, 25vh, 250px); }
-        .ql-editor.ql-blank::before { color: #666; font-style: normal; }
+        .ql-toolbar.ql-snow .ql-active .ql-stroke { stroke: var(--color-green-500); }
+        .ql-container.ql-snow { border: none; background: var(--color-white); }
+        .ql-editor { color: var(--color-black); font-size: 1rem; font-family: var(--font-body); min-height: clamp(160px, 25vh, 250px); }
+        .ql-editor.ql-blank::before { color: var(--color-neutral-600); font-style: normal; }
 
         .btn-submit {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #000;
+            background: linear-gradient(135deg, var(--color-green-500), var(--color-green-600));
+            color: var(--color-black);
             border: none;
             padding: 0.85rem 2rem;
             font-size: 1rem;
@@ -156,9 +160,9 @@
             text-align: center;
             display: none;
         }
-        .status-msg.success { display: block; background: rgba(34,197,94,0.2); color: #000; border: 1px solid rgba(34,197,94,0.4); }
-        .status-msg.error { display: block; background: rgba(239,68,68,0.2); color: #000; border: 1px solid rgba(239,68,68,0.4); }
-        .status-msg.info { display: block; background: rgba(59,130,246,0.2); color: #000; border: 1px solid rgba(59,130,246,0.4); }
+        .status-msg.success { display: block; background: rgba(34,197,94,0.2); color: var(--color-black); border: 1px solid rgba(34,197,94,0.4); }
+        .status-msg.error { display: block; background: rgba(239,68,68,0.2); color: var(--color-black); border: 1px solid rgba(239,68,68,0.4); }
+        .status-msg.info { display: block; background: rgba(59,130,246,0.2); color: var(--color-black); border: 1px solid rgba(59,130,246,0.4); }
 
         @media (max-width: 768px) {
             body { padding-top: 75px; }

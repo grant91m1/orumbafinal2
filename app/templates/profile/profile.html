@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
     <meta name="description" content="Your Orumba North LGA profile dashboard.">
-    <title>Profile — Orumba North LGA</title>
+    <title>Profile | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
@@ -12,13 +16,13 @@
     <link rel="stylesheet" href="/static/css/mobile-global.css">
     <style>
         body {
-            background: #f0f4f0;
+            background: var(--color-sage);
             min-height: 100vh;
             padding-top: 80px;
             padding-bottom: 2rem;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
-            color: #111827;
+            color: var(--color-gray-900);
         }
 
         .profile-layout {
@@ -33,7 +37,7 @@
             width: 260px;
             flex-shrink: 0;
             background: white;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--color-gray-300);
             border-radius: var(--radius-lg);
             padding: 1.5rem;
             height: fit-content;
@@ -45,16 +49,16 @@
             text-align: center;
             padding-bottom: 1.5rem;
             margin-bottom: 1.5rem;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid var(--color-gray-200);
         }
         .profile-sidebar .user-info h2 {
-            color: #111827;
+            color: var(--color-gray-900);
             font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
         }
         .profile-sidebar .user-info small {
-            color: #4b5563;
+            color: var(--color-gray-600);
             font-size: 0.85rem;
         }
 
@@ -65,7 +69,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.75rem 1rem;
-            color: #374151;
+            color: var(--color-gray-700);
             text-decoration: none;
             border-radius: var(--radius);
             font-size: 0.9rem;
@@ -75,7 +79,7 @@
         .sidebar-nav a:hover,
         .sidebar-nav a.active {
             background: rgba(34,197,94,0.12);
-            color: #15803d;
+            color: var(--color-green-700);
         }
         .sidebar-nav a span { font-size: 1.1rem; }
 
@@ -88,7 +92,7 @@
             width: 56px;
             height: 56px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, var(--color-green-500), var(--color-green-600));
             border: none;
             color: white;
             font-size: 1.5rem;
@@ -105,7 +109,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .profile-main h1, .profile-main h2 {
-            color: #111827;
+            color: var(--color-gray-900);
             margin-bottom: 1.5rem;
             font-size: var(--text-xl);
         }
@@ -118,7 +122,7 @@
         }
         .stat-box {
             background: white;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--color-gray-300);
             border-radius: var(--radius-lg);
             padding: 1.5rem 1rem;
             text-align: center;
@@ -127,21 +131,44 @@
         .stat-box .number {
             font-size: 2rem;
             font-weight: 800;
-            color: #15803d;
+            color: var(--color-green-700);
             display: block;
         }
-        .stat-box .label { color: #374151; font-size: 0.85rem; margin-top: 0.25rem; }
+        .stat-box .label { color: var(--color-gray-700); font-size: 0.85rem; margin-top: 0.25rem; }
 
         .content-card {
             background: white;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--color-gray-300);
             border-radius: var(--radius-lg);
             padding: 1.5rem;
             margin-bottom: 1rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
-        .content-card h3 { color: #111827; margin-bottom: 0.5rem; font-size: 1rem; }
-        .content-card p { color: #374151; font-size: 0.9rem; line-height: 1.5; }
+        .content-card h3 { color: var(--color-gray-900); margin-bottom: 0.5rem; font-size: 1rem; }
+        .content-card p { color: var(--color-gray-700); font-size: 0.9rem; line-height: 1.5; }
+        .card-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-gray-200);
+        }
+        .btn-delete {
+            padding: 0.5rem 1rem;
+            background: var(--color-white);
+            border: 1px solid var(--color-red-200);
+            border-radius: 8px;
+            color: var(--color-red-800);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .btn-delete:hover, .btn-delete:focus-visible { background: var(--color-red-50); border-color: var(--color-red-400); outline: none; }
+        .btn-delete:disabled { opacity: 0.6; cursor: wait; }
+        .card-actions-message { color: var(--color-red-800); font-size: 0.85rem; }
 
         .btn-glass {
             display: inline-flex;
@@ -157,7 +184,7 @@
             text-decoration: none;
         }
         .btn-glass.primary {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, var(--color-green-500), var(--color-green-600));
             color: white;
             box-shadow: 0 4px 15px rgba(34,197,94,0.3);
         }
@@ -166,11 +193,11 @@
             box-shadow: 0 6px 20px rgba(34,197,94,0.4);
         }
         .btn-glass.secondary {
-            background: #f3f4f6;
-            color: #111827;
-            border: 1px solid #d1d5db;
+            background: var(--color-gray-100);
+            color: var(--color-gray-900);
+            border: 1px solid var(--color-gray-300);
         }
-        .btn-glass.secondary:hover { background: #e5e7eb; }
+        .btn-glass.secondary:hover { background: var(--color-gray-200); }
 
         .section-header {
             display: flex;
@@ -188,27 +215,27 @@
         }
         .quick-actions .action-card {
             background: white;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--color-gray-300);
             border-radius: var(--radius-lg);
             padding: 1.5rem;
             text-align: center;
             text-decoration: none;
-            color: #111827;
+            color: var(--color-gray-900);
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
         .quick-actions .action-card:hover {
             transform: translateY(-4px);
-            background: #f9fafb;
+            background: var(--color-gray-50);
         }
         .quick-actions .action-card .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-        .quick-actions .action-card h3 { font-size: 1rem; margin: 0; color: #111827; }
+        .quick-actions .action-card h3 { font-size: 1rem; margin: 0; color: var(--color-gray-900); }
 
         .glass-form .form-group { margin-bottom: 1.25rem; }
         .glass-form label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #111827;
+            color: var(--color-gray-900);
             font-size: 0.9rem;
             font-weight: 600;
         }
@@ -218,9 +245,9 @@
             width: 100%;
             padding: 0.75rem 1rem;
             border-radius: var(--radius);
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--color-gray-300);
             background: white;
-            color: #111827;
+            color: var(--color-gray-900);
             font-size: 1rem;
             font-family: 'Inter', sans-serif;
             box-sizing: border-box;
@@ -230,10 +257,10 @@
         .glass-form select:focus,
         .glass-form textarea:focus {
             outline: none;
-            border-color: #22c55e;
+            border-color: var(--color-green-500);
             box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
         }
-        .glass-form input::placeholder { color: #6b7280; opacity: 1; }
+        .glass-form input::placeholder { color: var(--color-gray-500); opacity: 1; }
 
         @media (max-width: 768px) {
             .profile-layout { flex-direction: column; padding: 1rem; }
@@ -282,16 +309,16 @@
         <aside class="profile-sidebar" id="profileSidebar">
             <div class="user-info">
                 <h2 id="userName">Loading...</h2>
-                <small id="userRole">Citizen</small>
+                <small id="userRole">Writer</small>
             </div>
             <ul class="sidebar-nav">
-                <li><a href="#" data-panel="dashboard" class="nav-link active"><span>&#128202;</span> Dashboard</a></li>
-                <li><a href="#" data-panel="posts"><span>&#128240;</span> My Posts</a></li>
-                <li><a href="#" data-panel="albums"><span>&#128247;</span> Albums</a></li>
-                <li><a href="#" data-panel="events"><span>&#128197;</span> Events</a></li>
-                <li><a href="#" data-panel="create"><span>&#10133;</span> Create New</a></li>
-                <li><a href="#" data-panel="settings"><span>&#9881;</span> Settings</a></li>
-                <li><a href="#" id="logoutBtn"><span>&#128682;</span> Logout</a></li>
+                <li><a href="#" data-panel="dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#" data-panel="posts">My Posts</a></li>
+                <li><a href="#" data-panel="albums">Albums</a></li>
+                <li><a href="#" data-panel="events">Events</a></li>
+                <li><a href="#" data-panel="create">Create New</a></li>
+                <li><a href="#" data-panel="settings">Settings</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
             </ul>
         </aside>
 
@@ -327,7 +354,7 @@
                 </div>
                 <div id="postsGrid">
                     <div class="content-card">
-                        <p style="color: #374151; text-align: center; padding: 2rem 0;">No posts yet. Create your first post!</p>
+                        <p style="color: var(--color-gray-700); text-align: center; padding: 2rem 0;">No posts yet. Create your first post!</p>
                     </div>
                 </div>
             </div>
@@ -340,7 +367,7 @@
                 </div>
                 <div id="albumsGrid">
                     <div class="content-card">
-                        <p style="color: #374151; text-align: center; padding: 2rem 0;">No albums yet. Create your first album!</p>
+                        <p style="color: var(--color-gray-700); text-align: center; padding: 2rem 0;">No albums yet. Create your first album!</p>
                     </div>
                 </div>
             </div>
@@ -353,7 +380,7 @@
                 </div>
                 <div id="eventsGrid">
                     <div class="content-card">
-                        <p style="color: #374151; text-align: center; padding: 2rem 0;">No events yet. Create your first event!</p>
+                        <p style="color: var(--color-gray-700); text-align: center; padding: 2rem 0;">No events yet. Create your first event!</p>
                     </div>
                 </div>
             </div>
@@ -363,15 +390,12 @@
                 <h2>Create New Content</h2>
                 <div class="quick-actions">
                     <a href="/create-post" class="action-card">
-                        <div class="icon">&#128240;</div>
                         <h3>New Post</h3>
                     </a>
                     <a href="/create-album" class="action-card">
-                        <div class="icon">&#128247;</div>
                         <h3>New Album</h3>
                     </a>
                     <a href="/create-event" class="action-card">
-                        <div class="icon">&#128197;</div>
                         <h3>New Event</h3>
                     </a>
                 </div>
@@ -472,6 +496,43 @@
             return card;
         }
 
+        // Adds a Delete button to a dashboard card. The item is removed only after the writer confirms.
+        function addDeleteAction(card, { endpoint, kind, title, reload }) {
+            const actions = document.createElement('div');
+            actions.className = 'card-actions';
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'btn-delete';
+            button.textContent = `Delete ${kind}`;
+            const message = document.createElement('span');
+            message.className = 'card-actions-message';
+            message.setAttribute('role', 'alert');
+            button.addEventListener('click', async () => {
+                const name = title ? `"${title}"` : `this ${kind}`;
+                if (!window.confirm(`Delete ${name}? It will be removed from the website and cannot be restored.`)) return;
+                button.disabled = true;
+                message.textContent = '';
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'DELETE',
+                        headers: { 'X-CSRFToken': document.getElementById('csrf-token').value }
+                    });
+                    const result = await response.json().catch(() => ({}));
+                    if (!response.ok || result.status !== 'success') {
+                        throw new Error(result.message || `Unable to delete this ${kind}.`);
+                    }
+                    await reload();
+                    loadStats();
+                } catch (error) {
+                    message.textContent = error.message || `Unable to delete this ${kind}. Please try again.`;
+                    button.disabled = false;
+                }
+            });
+            actions.append(button, message);
+            card.append(actions);
+            return card;
+        }
+
         function showCollectionMessage(container, message) {
             const card = document.createElement('div');
             card.className = 'content-card';
@@ -509,14 +570,15 @@
                 const status = document.createElement('p');
                 status.textContent = `Status: ${post.status || 'draft'}`;
                 card.append(status);
-                return card;
+                return addDeleteAction(card, { endpoint: `/api/profile/posts/${post.id}`, kind: 'post', title: post.title, reload: loadPosts });
             });
         }
 
         function loadAlbums() {
             return loadProfileCollection('/api/profile/albums', 'albums', 'albumsGrid', 'No albums yet. Create your first album!', album => {
                 const photoCount = Array.isArray(album.posts) ? album.posts.length : 0;
-                return createContentCard(album.title, `${photoCount} ${photoCount === 1 ? 'photo' : 'photos'}`);
+                const card = createContentCard(album.title, `${photoCount} ${photoCount === 1 ? 'photo' : 'photos'}`);
+                return addDeleteAction(card, { endpoint: `/api/profile/albums/${album.id}`, kind: 'album', title: album.title, reload: loadAlbums });
             });
         }
 
@@ -525,7 +587,8 @@
                 const date = new Date(event.date);
                 const dateLabel = Number.isNaN(date.getTime()) ? event.date : date.toLocaleString();
                 const details = [dateLabel, event.location, event.status || 'draft'].filter(Boolean).join(' | ');
-                return createContentCard(event.title, details);
+                const card = createContentCard(event.title, details);
+                return addDeleteAction(card, { endpoint: `/api/profile/events/${event.id}`, kind: 'event', title: event.title, reload: loadEvents });
             });
         }
 

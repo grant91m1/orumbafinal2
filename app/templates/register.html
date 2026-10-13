@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Register for an Orumba North LGA account.">
-    <title>Register — Orumba North LGA</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Create a writer account for the Orumba North LGA website.">
+    <title>Create Writer Account | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
@@ -12,7 +17,7 @@
     <link rel="stylesheet" href="/static/css/mobile-global.css">
     <style>
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 50%, var(--color-navy-700) 100%);
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
@@ -33,18 +38,19 @@
             max-width: 420px;
         }
         h1 {
-            color: #ffffff;
+            color: var(--color-white);
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             font-size: var(--text-2xl);
             font-weight: 700;
             text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
+        .intro { color: var(--color-slate-200); text-align: center; font-size: 0.92rem; line-height: 1.55; margin: 0 0 1.5rem; }
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: #e2e8f0;
+            color: var(--color-slate-200);
             font-size: 0.9rem;
         }
         input {
@@ -55,21 +61,21 @@
             border: 1px solid rgba(255,255,255,0.18);
             background: rgba(255, 255, 255, 0.96);
             font-size: 16px;
-            color: #111827;
+            color: var(--color-gray-900);
             font-family: 'Inter', sans-serif;
             transition: border-color 0.25s ease, box-shadow 0.25s ease;
             box-sizing: border-box;
         }
         input:focus {
             outline: none;
-            border-color: #22c55e;
+            border-color: var(--color-green-500);
             box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
         }
-        input::placeholder { color: #111827; opacity: 1; }
+        input::placeholder { color: var(--color-gray-900); opacity: 1; }
         button[type="submit"] {
             width: 100%;
             padding: 0.875rem;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
+            background: linear-gradient(135deg, var(--color-green-500), var(--color-green-600));
             border: none;
             border-radius: var(--radius);
             font-weight: 700;
@@ -95,13 +101,13 @@
             text-align: center;
         }
         .link a {
-            color: #22c55e;
+            color: var(--color-green-500);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
         }
-        .link a:hover { color: #4ade80; text-decoration: underline; }
-        .link p { color: #e2e8f0; margin: 0; font-size: 0.9rem; }
+        .link a:hover { color: var(--color-green-400); text-decoration: underline; }
+        .link p { color: var(--color-slate-200); margin: 0; font-size: 0.9rem; }
 
         @media (max-width: 480px) {
             .register-container { padding: 2rem 1.5rem; }
@@ -111,18 +117,28 @@
 </head>
 <body>
     <div class="register-container" role="main" aria-labelledby="register-title">
-        <h1 id="register-title">Create Account</h1>
+        <h1 id="register-title">Create Writer Account</h1>
+        {% if not registration_open %}
+        <p class="intro">Writer registration is closed. Contact the council ICT unit to request an account.</p>
+        {% else %}
+        <p class="intro">For authorised council writers only. {% if invite_required %}You need the invite code issued by the council.{% endif %}</p>
         <form id="register-form" aria-describedby="register-message">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required autocomplete="username" placeholder="Choose a username" />
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required autocomplete="new-password" placeholder="Choose a password" />
-            <button type="submit">Register</button>
+            {% if invite_required %}
+            <label for="invite_code">Invite code</label>
+            <input type="password" id="invite_code" name="invite_code" required autocomplete="off" placeholder="Code issued by the council" />
+            {% endif %}
+            <button type="submit">Create account</button>
             <div id="register-message" class="message" role="alert" aria-live="assertive"></div>
         </form>
+        {% endif %}
         <div class="link">
-            <p>Already have an account? <a href="/login">Login here</a></p>
+            <p>Already have an account? <a href="/writers/login">Sign in</a></p>
+            <p style="margin-top: 0.75rem;"><a href="/">&larr; Back to the website</a></p>
         </div>
     </div>
 
@@ -130,7 +146,7 @@
         const form = document.getElementById('register-form');
         const messageDiv = document.getElementById('register-message');
 
-        form.addEventListener('submit', async (e) => {
+        if (form) form.addEventListener('submit', async (e) => {
             e.preventDefault();
             messageDiv.textContent = '';
             messageDiv.style.color = '';
@@ -151,13 +167,13 @@
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrfToken
                     },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({ username, password, invite_code: form.invite_code ? form.invite_code.value.trim() : '' })
                 });
                 const data = await response.json();
                 if (data.status === 'success') {
                     messageDiv.style.color = '#4ade80';
                     messageDiv.textContent = 'Registration successful! Redirecting...';
-                    setTimeout(() => { window.location.href = '/login'; }, 1500);
+                    setTimeout(() => { window.location.href = '/writers/login'; }, 1500);
                 } else {
                     messageDiv.style.color = '#f87171';
                     messageDiv.textContent = data.message || 'Registration failed.';

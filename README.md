@@ -19,6 +19,12 @@ bucket named `uploads` with a 5 MB image-only limit; the Render blueprint select
 Contact form submissions are stored in the private `contact_messages` table; configure an
 operational process to review and respond to those submissions.
 
+The login area is for council writers who publish news, albums and events. To let a writer
+create an account, set `WRITER_INVITE_CODE` and share that code with them privately; they enter
+it on `/writers/register`. Writers sign in at `/writers/login`; neither page is linked from the
+public menu. If the variable is not set, registration is closed in production (it stays
+open in local development).
+
 For rate limits that persist across restarts or multiple instances, set `RATELIMIT_STORAGE_URI`
 to a shared Redis-compatible service. The Vercel configuration is not a supported deployment
 path yet; use Render for now.

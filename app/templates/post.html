@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#231f20">
     <meta name="description" content="Read the full article from Orumba North LGA Newsroom.">
-    <title>Article — Orumba North LGA</title>
+    <title>Article | Orumba North LGA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/global-theme.css">
@@ -14,7 +18,6 @@
         .article-hero {
             background: linear-gradient(135deg, rgba(0,80,0,0.9), rgba(34,197,94,0.8));
             padding: 6rem 2rem 4rem;
-            margin-top: -75px;
             padding-top: calc(75px + 4rem);
             color: white;
             text-align: center;
@@ -45,17 +48,17 @@
             padding: 3rem 1.5rem;
         }
         .article-body p {
-            color: #374151;
+            color: var(--color-gray-700);
             line-height: 1.8;
             font-size: var(--text-lg);
             margin-bottom: 1.5rem;
         }
-        .article-body h2, .article-body h3 { color: #111827; margin: 2rem 0 1rem; }
+        .article-body h2, .article-body h3 { color: var(--color-gray-900); margin: 2rem 0 1rem; }
         .article-body blockquote {
-            border-left: 4px solid #22c55e;
+            border-left: 4px solid var(--color-green-500);
             padding-left: 1.5rem;
             margin: 2rem 0;
-            color: #4b5563;
+            color: var(--color-gray-600);
             font-style: italic;
             font-size: var(--text-lg);
         }
@@ -69,7 +72,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            color: #22c55e;
+            color: var(--color-green-500);
             text-decoration: none;
             font-weight: 600;
             margin-bottom: 2rem;

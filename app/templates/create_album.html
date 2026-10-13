@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/static/images/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#231f20">
   <meta name="description" content="Create a new photo album for Orumba North LGA.">
-  <title>Create Album — Orumba North LGA</title>
+  <title>Create Album | Orumba North LGA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/global-theme.css">
@@ -14,7 +18,7 @@
     :root { --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
     body {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 50%, var(--color-navy-700) 100%);
       background-attachment: fixed;
       min-height: 100vh;
       padding-top: 80px;
@@ -26,7 +30,7 @@
     main { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
 
     h1 {
-      color: #fff;
+      color: var(--color-white);
       text-align: center;
       margin-bottom: 1.5rem;
       font-size: clamp(1.6rem, 5vw, 2.5rem);
@@ -49,7 +53,7 @@
       display: block;
       margin-bottom: 0.4rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--color-white);
       font-size: clamp(0.85rem, 2.5vw, 0.95rem);
     }
     input[type="text"] {
@@ -59,7 +63,7 @@
       border-radius: var(--radius);
       border: 1px solid rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.06);
-      color: #fff;
+      color: var(--color-white);
       font-family: var(--font-body);
       transition: border-color 0.25s ease, box-shadow 0.25s ease;
       box-sizing: border-box;
@@ -67,7 +71,7 @@
     input[type="text"]::placeholder { color: rgba(255,255,255,0.45); }
     input[type="text"]:focus {
       outline: none;
-      border-color: #22c55e;
+      border-color: var(--color-green-500);
       box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
     }
     input[type="file"] {
@@ -76,13 +80,13 @@
       border-radius: var(--radius);
       border: 1.5px dashed rgba(255,255,255,0.25);
       background: rgba(255,255,255,0.04);
-      color: #fff;
+      color: var(--color-white);
       cursor: pointer;
       font-size: 0.9rem;
     }
     input[type="file"]::file-selector-button {
-      background: #22c55e;
-      color: #fff;
+      background: var(--color-green-500);
+      color: var(--color-white);
       border: none;
       padding: 0.5rem 0.9rem;
       border-radius: 8px;
@@ -92,7 +96,7 @@
       font-family: var(--font-body);
       transition: background 0.25s ease;
     }
-    input[type="file"]::file-selector-button:hover { background: #16a34a; }
+    input[type="file"]::file-selector-button:hover { background: var(--color-green-600); }
 
     .post-entry {
       background: rgba(255,255,255,0.06);
@@ -110,7 +114,7 @@
     .post-entry-title { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.8); }
     .remove-post {
       background: rgba(239,68,68,0.2);
-      color: #ff6b6b;
+      color: var(--color-coral);
       border: 1px solid rgba(239,68,68,0.3);
       padding: 0.35rem 0.7rem;
       font-size: 0.8rem;
@@ -135,15 +139,15 @@
     }
     .btn-add {
       background: rgba(34,197,94,0.15);
-      color: #22c55e;
+      color: var(--color-green-500);
       border: 1.5px solid rgba(34,197,94,0.3);
       padding: 0.65rem 1.1rem;
       font-size: 0.9rem;
     }
     .btn-add:hover { background: rgba(34,197,94,0.25); transform: translateY(-1px); }
     .btn-submit {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #fff;
+      background: linear-gradient(135deg, var(--color-green-500), var(--color-green-600));
+      color: var(--color-white);
       padding: 0.85rem 1.5rem;
       font-size: 1rem;
       width: 100%;
@@ -166,9 +170,9 @@
       text-align: center;
       display: none;
     }
-    .status-msg.success { display: block; background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
-    .status-msg.error { display: block; background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
-    .status-msg.info { display: block; background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .status-msg.success { display: block; background: rgba(34,197,94,0.15); color: var(--color-green-400); border: 1px solid rgba(34,197,94,0.25); }
+    .status-msg.error { display: block; background: rgba(239,68,68,0.15); color: var(--color-red-400); border: 1px solid rgba(239,68,68,0.25); }
+    .status-msg.info { display: block; background: rgba(59,130,246,0.15); color: var(--color-blue-400); border: 1px solid rgba(59,130,246,0.25); }
 
     @media (max-width: 768px) {
       body { padding-top: 75px; }

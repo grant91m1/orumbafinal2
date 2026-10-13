@@ -1,19 +1,25 @@
 <header class="header-glass navbar" role="banner">
   <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
   <a href="/" class="logo-link" aria-label="Orumba North Home">
-    <img src="/static/images/orumba-north-logo.jpg" alt="Orumba North Logo" />
+    <img src="/static/images/orumba-north-logo.jpg" alt="" />
+    <span class="logo-text">
+      <strong>Orumba North</strong>
+      <small>Local Government Council</small>
+    </span>
   </a>
 
-  <span class="nav-title-mobile">Ndi Orumba</span>
-
   <div class="nav-container" id="nav-container">
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    <div class="drawer-head">
+      <span class="drawer-title">Menu</span>
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    </div>
     <nav class="nav-menu">
       <ul class="nav-list" id="nav-list">
         <li><a href="/">Home</a></li>
         <li class="dropdown">
           <a href="/about">About</a>
           <ul class="dropdown-menu">
+            <li><a href="/about">Overview</a></li>
             <li><a href="/about/history">History</a></li>
             <li><a href="/about/landmarks-culture">Landmarks &amp; Culture</a></li>
             <li><a href="/about/people">People</a></li>
@@ -38,8 +44,7 @@
         </li>
         <li><a href="/map-explore">Map/Explore</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li id="auth-link"><a href="/login">Login</a></li>
-        <li id="profile-link" style="display:none"><a href="/profile">Profile</a></li>
+        <li id="profile-link" style="display:none"><a href="/profile">Writer Dashboard</a></li>
       </ul>
     </nav>
   </div>
@@ -59,13 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const navContainer = document.getElementById('nav-container');
   const drawerClose = document.getElementById('drawer-close');
   const navList = document.getElementById('nav-list');
-  const authLink = document.getElementById('auth-link');
   const profileLink = document.getElementById('profile-link');
 
   function closeMenu() {
     navContainer.classList.remove('active');
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('nav-open');
     document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
   }
 
@@ -73,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburger.setAttribute('aria-expanded', 'true');
     hamburger.classList.add('active');
     navContainer.classList.add('active');
+    document.documentElement.classList.add('nav-open');
   }
 
   hamburger.addEventListener('click', () => {
@@ -103,19 +109,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // The dashboard link only appears for a signed-in writer
   fetch('/api/check-auth')
     .then(res => res.json())
     .then(data => {
-      if (data.authenticated) {
-        authLink.style.display = 'none';
-        profileLink.style.display = 'block';
-        profileLink.querySelector('a').textContent = 'Profile';
-      }
+      if (data.authenticated) profileLink.style.display = 'block';
     })
-    .catch(() => {
-      authLink.style.display = 'block';
-      profileLink.style.display = 'none';
-    });
+    .catch(() => {});
 
   navList.querySelectorAll('.dropdown > a').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -146,3 +146,4 @@ document.addEventListener('DOMContentLoaded', function() {
 <link rel="stylesheet" href="/static/css/navbar.css">
 <link rel="stylesheet" href="/static/css/glassmorphism.css">
 <link rel="stylesheet" href="/static/css/mobile-global.css">
+<link rel="stylesheet" href="/static/css/components.css">
