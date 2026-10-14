@@ -119,6 +119,26 @@ PEOPLE = {
         'office': 'Councillor, Ndiowu Ward',
         'photo': 'councillors/ndiowu.jpg',
     },
+    'councillor_oko_2': {
+        'name': 'Hon. Izuchukwu Nwosu',
+        'office': 'Councillor, Oko Ward 2',
+        'photo': 'councillors/oko-2.jpg',
+    },
+    'councillor_nanka_1': {
+        'name': 'Ibekwute Ogonna Obioma',
+        'office': 'Councillor, Nanka Ward 1',
+        'photo': 'councillors/nanka-1.jpg',
+    },
+    'councillor_oko_1': {
+        'name': 'Hon. Arinze Harrison Okpala',
+        'office': 'Councillor, Oko Ward 1',
+        'photo': 'councillors/oko-1.jpg',
+    },
+    'councillor_okpeze_ndiukwuenu': {
+        'name': 'Hon. Chikezie Mmuogbo',
+        'office': 'Councillor, Okpeze/Ndiukwuenu Ward',
+        'photo': 'councillors/okpeze-ndiukwuenu.jpg',
+    },
 }
 
 # Order in which ward councillors are listed
@@ -134,4 +154,8 @@ COUNCILLORS = [
     'councillor_ndiokolo_ndiokpaleke',
     'councillor_awgbu_2',
     'councillor_ndiowu',
+    'councillor_oko_2',
+    'councillor_nanka_1',
+    'councillor_oko_1',
+    'councillor_okpeze_ndiukwuenu',
 ]
