@@ -8,7 +8,7 @@ To change someone's office or photo, edit it here only.
 
 PEOPLE = {
     'chairman': {
-        'name': 'Hon. Barr. Casmir Chinonso Nwafor',
+        'name': 'Capt. Barr. Casmir Chukwunonso Nwafor (RTD)',
         'office': 'Executive Chairman',
         'photo': 'chairman-portrait.jpg',
     },
