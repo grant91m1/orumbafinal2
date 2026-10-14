@@ -21,109 +21,18 @@
 
     <section class="page-banner" style="background-image: url('/static/images/orumba-header-bakground-image3.jpg');">
         <div class="container">
-            <span class="page-banner-eyebrow">Our People in Government</span>
+            <span class="page-banner-eyebrow">Legislative Council</span>
             <h1>Members of Orumba North</h1>
-            <p>Elected councilors and appointed officials serving our communities with dedication and integrity.</p>
+            <p>The elected ward councillors representing communities across Orumba North.</p>
         </div>
     </section>
 
     <main class="section-padding">
         <div class="container">
             <div class="people-grid">
-                {{ person_card('health_committee_chairman') }}
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember2.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember3.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember4.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember5.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                {{ person_card('deputy_leader') }}
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember7.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                {{ person_card('information_adviser') }}
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember9.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                {{ person_card('chairman_pa') }}
-                {{ person_card('works_supervisor') }}
-                {{ person_card('health_supervisor') }}
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember13.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                {{ person_card('vice_chairman_sa') }}
-                {{ person_card('finance_supervisor') }}
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember16.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember17.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember18.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                {{ person_card('youth_supervisor') }}
-                <article class="person-card">
-                    <div class="person-photo"><img src="/static/images/orumbamember20.jpg" alt="Councilor" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
-                {{ person_card('vice_chairman') }}
-                <article class="person-card">
-                    <div class="person-photo person-photo--seal"><img src="/static/images/orumba-north-logo.jpg" alt="" loading="lazy"></div>
-                    <div class="person-body">
-                        <span class="person-role">Orumba North Congress of Councilors</span>
-                        <h3 class="person-name">Hon. Councilor</h3>
-                    </div>
-                </article>
+                {% for key in councillors %}
+                {{ person_card(key) }}
+                {% endfor %}
             </div>
         </div>
     </main>
