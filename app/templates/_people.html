@@ -2,10 +2,14 @@
 {% macro person_card(key, tag='h3', wide=False) -%}
 {%- set p = people[key] -%}
 <article class="person-card{{ ' person-card--wide' if wide }}">
-    <div class="person-photo"><img src="/static/images/{{ p.photo }}" alt="{{ p.name }}" loading="lazy"></div>
+    <div class="person-photo"><img src="/static/images/{{ p.photo }}" alt="{{ p.name or p.office }}" loading="lazy"></div>
     <div class="person-body">
+        {%- if p.name %}
         <span class="person-role">{{ p.office }}</span>
         <{{ tag }} class="person-name">{{ p.name }}</{{ tag }}>
+        {%- else %}
+        <{{ tag }} class="person-name">{{ p.office }}</{{ tag }}>
+        {%- endif %}
         {%- if caller is defined %}
         <p class="person-bio">{{ caller() }}</p>
         {%- endif %}

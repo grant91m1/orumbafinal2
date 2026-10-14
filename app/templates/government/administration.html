@@ -167,28 +167,10 @@
                 <div id="councilors" class="admin-tab-content">
                     <h3 class="admin-section-title">Legislative Councilors</h3>
                     <p class="admin-section-desc">Ward-based representatives ensuring community voice in LGA governance and legislation.</p>
-                    <div class="admin-grid">
-                        <article class="person-card">
-                            <div class="person-body">
-                                <span class="person-role">Ward A Councilor</span>
-                                <h4 class="person-name">Hon. Ward A Rep</h4>
-                                <p class="person-bio">Community infrastructure and youth empowerment focus.</p>
-                            </div>
-                        </article>
-                        <article class="person-card">
-                            <div class="person-body">
-                                <span class="person-role">Ward B Councilor</span>
-                                <h4 class="person-name">Hon. Ward B Rep</h4>
-                                <p class="person-bio">Agriculture development and market improvements.</p>
-                            </div>
-                        </article>
-                        <article class="person-card">
-                            <div class="person-body">
-                                <span class="person-role">Ward C Councilor</span>
-                                <h4 class="person-name">Hon. Ward C Rep</h4>
-                                <p class="person-bio">Health services and education advocacy.</p>
-                            </div>
-                        </article>
+                    <div class="people-grid">
+                        {% for key in councillors %}
+                        {{ person_card(key, tag='h4') }}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

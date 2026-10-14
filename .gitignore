@@ -25,3 +25,6 @@ venv/
 
 # Stray local artifact
 /path/
+
+# macOS folder metadata
+.DS_Store

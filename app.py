@@ -12,7 +12,7 @@ import bcrypt
 from functools import wraps
 
 from app.db import db
-from app.people import PEOPLE
+from app.people import COUNCILLORS, PEOPLE
 from app.storage import MAX_FILE_SIZE, storage
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,6 +41,7 @@ app.config['SESSION_COOKIE_SECURE'] = os.environ.get('FLASK_ENV') == 'production
 
 # Named officials, available to every template as `people`
 app.jinja_env.globals['people'] = PEOPLE
+app.jinja_env.globals['councillors'] = COUNCILLORS
 
 # CSRF Protection
 csrf = CSRFProtect(app)
