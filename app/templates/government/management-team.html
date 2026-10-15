@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Management team and staff of Orumba North Local Government Area.">
+    <title>Management Team — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .mgmt-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        .mgmt-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .mgmt-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 700px; margin: 0 auto 1.5rem; }
+
+        .mgmt-card {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+        .mgmt-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .mgmt-card:hover { transform: translateY(-12px); box-shadow: 0 30px 80px rgba(0,0,0,0.2) !important; }
+        .mgmt-card:hover::before { opacity: 1; }
+        .mgmt-avatar {
+            width: 140px; height: 140px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(22,163,74,0.15));
+            border: 4px solid rgba(34,197,94,0.3);
+            margin: 0 auto 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: #16a34a;
+            transition: all 0.3s;
+        }
+        .mgmt-card:hover .mgmt-avatar { transform: scale(1.05); border-color: #22c55e; }
+        .mgmt-h2 { font-size: var(--text-xl); color: #111827; margin-bottom: 0.5rem; }
+        .mgmt-role { color: #16a34a; font-weight: 600; margin-bottom: 1rem; }
+        .mgmt-bio { color: #4b5563; line-height: 1.7; font-size: var(--text-base); }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+        .staff-grid img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+        .staff-grid img:hover { transform: scale(1.05); border-color: #22c55e; }
+        @media (min-width: 640px) {
+            .staff-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="mgmt-hero">
+        <div class="container">
+            <h1>Management Team</h1>
+            <p>Dedicated leadership committed to progress, accountability, and service delivery across all wards.</p>
+            <a href="/government" class="btn-primary" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); padding: 0.875rem 2rem; border-radius: 50px; color: white; text-decoration: none; font-weight: 600; display: inline-block;">&larr; Back to Government</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-responsive-2">
+                <div class="glass-card mgmt-card">
+                    <img class="mgmt-avatar" src="/static/images/mayorimg3.JPG" alt="Hon. Barr. Casmir Chinonso Nwafor" loading="lazy" />
+                    <h2 class="mgmt-h2">Hon. Barr. Casmir Chinonso Nwafor</h2>
+                    <p class="mgmt-role">Executive Chairman</p>
+                    <p class="mgmt-bio">Visionary leader with a background in law and public service. Driving infrastructure transformation, healthcare access, and educational advancement across all 10 wards of Orumba North.</p>
+                </div>
+                <div class="glass-card mgmt-card">
+                    <div class="mgmt-avatar">&#128100;</div>
+                    <h2 class="mgmt-h2">Hon. Ifesinachi Chukwurah</h2>
+                    <p class="mgmt-role">Vice Chairman</p>
+                    <p class="mgmt-bio">Champion of women's empowerment and youth development. Coordinates community outreach, social welfare programmes, and grassroots engagement throughout the LGA.</p>
+                </div>
+                <div class="glass-card mgmt-card">
+                    <div class="mgmt-avatar">&#128100;</div>
+                    <h2 class="mgmt-h2">Secretary to the LGA</h2>
+                    <p class="mgmt-role">Head of Administration</p>
+                    <p class="mgmt-bio">Administrative professional ensuring seamless government operations, inter-departmental coordination, and efficient implementation of council policies and directives.</p>
+                </div>
+                <div class="glass-card mgmt-card">
+                    <div class="mgmt-avatar">&#128101;</div>
+                    <h2 class="mgmt-h2">Council Leadership</h2>
+                    <p class="mgmt-role">10 Ward Councilors</p>
+                    <p class="mgmt-bio">Elected legislative representatives ensuring grassroots participation in decision-making, budget oversight, and ward-specific project delivery.</p>
+                </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Staff &amp; Executives</h2>
+            <div class="staff-grid">
+                <img src="/static/images/orumbamember1.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember2.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember3.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember4.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember5.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember6.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember7.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember8.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember9.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember10.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember11.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember12.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember13.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember14.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember15.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember16.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember17.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember18.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember19.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember20.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember21.jpg" alt="Staff member" loading="lazy">
+                <img src="/static/images/orumbamember22.jpg" alt="Staff member" loading="lazy">
+            </div>
+            <p style="text-align: center; color: #6b7280; margin-top: 1.5rem; font-style: italic;">Orumba North LGA Staff &amp; Executive Team</p>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+
+    <script>
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            revealObserver.observe(card);
+        });
+    </script>
+</body>
+</html>

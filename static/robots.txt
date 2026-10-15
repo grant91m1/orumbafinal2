@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://orumba-north.vercel.app/sitemap.xml
+

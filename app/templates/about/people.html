@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The people of Orumba North LGA — population, culture, professions, and community life.">
+    <title>People — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .people-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        .people-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .people-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 600px; margin: 0 auto; }
+
+        .stat-big {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            display: block;
+        }
+        .stat-card-people { text-align: center; padding: 2rem; }
+        .stat-card-people h3 { font-size: var(--text-lg); color: #111827; margin-top: 0.75rem; margin-bottom: 0.25rem; }
+        .stat-card-people p { color: #6b7280; font-size: var(--text-sm); }
+
+        .people-card { padding: 2.5rem 2rem; text-align: center; height: 100%; }
+        .people-icon { width: 64px; height: 64px; margin: 0 auto 1.5rem; }
+        .people-card h2 { font-size: var(--text-xl); color: #111827; margin-bottom: 0.75rem; }
+        .people-card p { color: #4b5563; line-height: 1.7; font-size: var(--text-base); }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="people-hero">
+        <div class="container">
+            <h1>People of Orumba North</h1>
+            <p>Over 200,000 resilient residents united by tradition, enterprise, and community spirit.</p>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #f0fdf4;">
+        <div class="container">
+            <div class="grid-responsive-4">
+                <div class="glass-card stat-card-people">
+                    <span class="stat-big">200K+</span>
+                    <h3>Population</h3>
+                    <p>Thriving communities across 10 wards</p>
+                </div>
+                <div class="glass-card stat-card-people">
+                    <span class="stat-big">10</span>
+                    <h3>Wards</h3>
+                    <p>Diverse representation and governance</p>
+                </div>
+                <div class="glass-card stat-card-people">
+                    <span class="stat-big">80%</span>
+                    <h3>Agriculture</h3>
+                    <p>Primary occupation — yam capital of Anambra</p>
+                </div>
+                <div class="glass-card stat-card-people">
+                    <span class="stat-big">95%</span>
+                    <h3>Literacy</h3>
+                    <p>Strong legacy of mission schools</p>
+                </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-responsive-2">
+                <div class="glass-card people-card">
+                    <svg class="people-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    <h2>Family &amp; Community</h2>
+                    <p>Strong extended family ties, age-grade associations, and communal labour traditions create a support network that cares for every member. The Umunnna and Nso-ani systems keep communities cohesive.</p>
+                </div>
+                <div class="glass-card people-card">
+                    <svg class="people-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <h2>Religion &amp; Beliefs</h2>
+                    <p>A predominantly Christian community with Anglican and Catholic heritage from early missions. Traditional religious practices live on through festivals, oath-taking ceremonies, and ancestral veneration.</p>
+                </div>
+                <div class="glass-card people-card">
+                    <svg class="people-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 17c3.31 0 6-2.69 6-6 0-.98-.23-1.9-.64-2.73l1.54-1.54c.56.92.89 2 .89 3.27 0 3.31-2.69 6-6 6-.98 0-1.9-.23-2.73-.64l-1.54 1.54C10.1 16.77 11.02 17 12 17zm0-12c-3.31 0-6 2.69-6 6 0 .98.23 1.9.64 2.73l-1.54 1.54c-.56-.92-.89-2-.89-3.27 0-3.31 2.69-6 6-6 .98 0 1.9.23 2.73.64l1.54-1.54C13.9 5.23 12.98 5 12 5z"/></svg>
+                    <h2>Traditional Leadership</h2>
+                    <p>Igwe-in-Councils, Eze title holders, and Ozo titled men continue to play vital roles in dispute resolution, cultural preservation, and community organisation across all wards.</p>
+                </div>
+                <div class="glass-card people-card">
+                    <svg class="people-icon" viewBox="0 0 24 24" fill="#22c55e"><path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 1.99-.89 1.99-2L22 8c0-1.11-.89-2-2-2zm0 12H4V8h16v10zm-9.5-2c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zM13.5 8c.83 0 1.5-.67 1.5-1.5S14.33 5 13.5 5s-1.5.67-1.5 1.5S12.67 8 13.5 8z"/></svg>
+                    <h2>Modern Professions</h2>
+                    <p>Teachers, civil servants, traders, entrepreneurs, and a growing tech-savvy youth population. Diaspora remittances fuel local development, while emerging digital skills open new frontiers.</p>
+                </div>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+
+    <script>
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            revealObserver.observe(card);
+        });
+    </script>
+</body>
+</html>

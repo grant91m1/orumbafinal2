@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Members and elected officials of Orumba North Local Government Area Congress of Councilors.">
+    <title>Members — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-attachment: fixed;
+            color: white;
+        }
+        .members-hero {
+            position: relative;
+            min-height: 35vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+            text-align: center;
+        }
+        .members-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.5rem; }
+        .members-hero p { font-size: var(--text-lg); opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.25rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .profile-card {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .profile-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .profile-card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid rgba(34,197,94,0.4);
+            box-shadow: 0 4px 15px rgba(34,197,94,0.2);
+        }
+        .profile-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+        .profile-card p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+            margin: 0;
+        }
+        @media (min-width: 640px) {
+            .profile-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+            .profile-card img { width: 100px; height: 100px; }
+        }
+        @media (min-width: 1024px) {
+            .profile-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="members-hero">
+        <div class="container">
+            <h1>Members of Orumba North</h1>
+            <p>Elected councilors and appointed officials serving our communities with dedication and integrity.</p>
+        </div>
+    </section>
+
+    <main class="section-padding" style="padding-top: 1rem;">
+        <div class="container">
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember1.jpg" alt="Hon. Williams Omenuko" loading="lazy">
+                    <h3>Hon. Williams Omenuko</h3>
+                    <p>Chairman, House Committee on Health</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember2.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember3.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember4.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember5.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember6.jpg" alt="Hon. Nwankwo Ikenna Kenneth" loading="lazy">
+                    <h3>Hon. Nwankwo Ikenna Kenneth</h3>
+                    <p>Deputy Leader, Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember7.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember8.jpg" alt="Arinze Clems" loading="lazy">
+                    <h3>Arinze Clems</h3>
+                    <p>Special Adviser on Information</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember9.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember10.jpg" alt="Nwosu Izuchukwu Innocent" loading="lazy">
+                    <h3>Nwosu Izuchukwu Innocent</h3>
+                    <p>Personal Assistant to the Mayor</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember11.jpg" alt="Engr. Austin Ganco O." loading="lazy">
+                    <h3>Engr. Austin Ganco O.</h3>
+                    <p>Supervisor, Works &amp; Housing</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember12.jpg" alt="Hon. Mrs Christiana Nwankwo" loading="lazy">
+                    <h3>Hon. Mrs Christiana Nwankwo</h3>
+                    <p>Supervisor for Health</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember13.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember14.jpg" alt="Onwurah Chukwuebuka Frank" loading="lazy">
+                    <h3>Onwurah Chukwuebuka Frank</h3>
+                    <p>Special Assistant to Deputy Mayor</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember15.jpg" alt="Hon. Kingsley Eche Ngugu" loading="lazy">
+                    <h3>Hon. Kingsley Eche Ngugu</h3>
+                    <p>Supervisor for Budget &amp; Finance</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember16.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember17.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember18.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember19.jpg" alt="Hon. Chibuike Jasper Ezeifedikwa" loading="lazy">
+                    <h3>Hon. Chibuike Jasper Ezeifedikwa</h3>
+                    <p>Supervisor for Youth, Sports &amp; Culture</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember20.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember21.jpg" alt="Hon. Ifesinachi Chukwurah" loading="lazy">
+                    <h3>Hon. Ifesinachi Chukwurah</h3>
+                    <p>Deputy Mayor, Orumba North</p>
+                </div>
+                <div class="profile-card">
+                    <img src="/static/images/orumbamember22.jpg" alt="Councilor" loading="lazy">
+                    <h3>Hon. Councilor</h3>
+                    <p>Orumba North Congress of Councilors</p>
+                </div>
+        </div>
+    </main>
+
+    {% include '_footer.html' %}
+
+    <script>
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.05 });
+        document.querySelectorAll('.profile-card').forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `opacity 0.5s ease ${i * 0.03}s, transform 0.5s ease ${i * 0.03}s`;
+            revealObserver.observe(card);
+        });
+    </script>
+</body>
+</html>

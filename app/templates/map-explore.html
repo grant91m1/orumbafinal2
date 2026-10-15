@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive map and key locations in Orumba North LGA — schools, hospitals, markets, and government offices.">
+    <title>Map &amp; Explore — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .map-hero {
+            position: relative;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+background: url('/static/images/orumba-header-bakground-image.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        .map-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.5rem; }
+        .map-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 600px; margin: 0 auto; }
+
+        .map-container {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        @media (min-width: 768px) {
+            .map-container { height: 500px; }
+        }
+
+        .location-card {
+            padding: 1.5rem;
+            border-left: 4px solid #22c55e;
+        }
+        .location-card h4 {
+            font-size: var(--text-lg);
+            color: #111827;
+            margin-bottom: 0.35rem;
+        }
+        .location-card p {
+            color: #6b7280;
+            font-size: var(--text-base);
+            margin: 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="map-hero">
+        <div class="container">
+            <h1>Explore Orumba North</h1>
+            <p>Find government offices, health centres, schools, markets, and key landmarks across our 10 wards.</p>
+        </div>
+    </section>
+
+    <section class="section-padding" style="padding-bottom: 2rem;">
+        <div class="container">
+            <div class="glass-card map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.679273465!2d7.03333!3d6.16667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1047590000000000%3A0x0!2sOrumba%20North!5e0!3m2!1sen!2sng!4v1690000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Key Locations</h2>
+            <div class="grid-responsive-2" style="gap: 1.5rem;">
+                <div class="glass-card location-card">
+                    <h4>LGA Secretariat</h4>
+                    <p>Ihitenesa — Administrative headquarters for all council operations and public enquiries.</p>
+                </div>
+                <div class="glass-card location-card">
+                    <h4>General Hospital</h4>
+                    <p>Primary healthcare centre providing emergency, maternal, and outpatient services to residents.</p>
+                </div>
+                <div class="glass-card location-card">
+                    <h4>Secondary Schools</h4>
+                    <p>Public and mission schools distributed across Agulu, Nanka, Nibo, and surrounding communities.</p>
+                </div>
+                <div class="glass-card location-card">
+                    <h4>Major Markets</h4>
+                    <p>Ihitenesa and Okpeze markets serve as economic hubs for trade, agriculture, and commerce.</p>
+                </div>
+                <div class="glass-card location-card">
+                    <h4>Agricultural Zones</h4>
+                    <p>Communal farmlands and cooperative societies supporting yam, cassava, and vegetable production.</p>
+                </div>
+                <div class="glass-card location-card">
+                    <h4>Tourism Sites</h4>
+                    <p>Agulu Lake and cultural centres attracting visitors and researchers from across Nigeria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+</body>
+</html>

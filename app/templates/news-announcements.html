@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official announcements and press releases from Orumba North LGA.">
+    <title>Announcements — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .announce-hero {
+            position: relative;
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image3.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        .announce-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .announce-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 700px; margin: 0 auto; }
+
+        .announcement-card {
+            padding: 2rem;
+            border-left: 4px solid #22c55e;
+            height: 100%;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        .announcement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .announcement-card .date {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+        .announcement-card h3 {
+            font-size: var(--text-lg);
+            color: #111827;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+        .announcement-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            font-size: var(--text-base);
+        }
+
+        @media (max-width: 768px) {
+            .announce-hero { min-height: 30vh; padding: 5rem 1rem 2rem; }
+            .announce-hero h1 { font-size: var(--text-3xl); }
+            .announcement-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="announce-hero">
+        <div class="container">
+            <h1>&#128240; Announcements</h1>
+            <p>Official announcements, public notices, and press releases from Orumba North Local Government.</p>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: #f8fafc;">
+        <div class="container">
+            <div class="grid-responsive-2" id="announcements-grid">
+                <div class="announcement-card" role="status">Loading current announcements...</div>
+            </div>
+    </section>
+
+    {% include '_footer.html' %}
+    <script>
+        async function loadAnnouncements() {
+            const grid = document.getElementById('announcements-grid');
+            try {
+                const response = await fetch('/api/public/posts');
+                const data = await response.json();
+                if (!response.ok || data.status !== 'success' || !Array.isArray(data.posts)) {
+                    throw new Error('Unable to load announcements.');
+                }
+                if (!data.posts.length) {
+                    grid.textContent = '';
+                    const emptyState = document.createElement('div');
+                    emptyState.className = 'announcement-card';
+                    emptyState.textContent = 'No current announcements are available. Please check back soon.';
+                    grid.appendChild(emptyState);
+                    return;
+                }
+
+                grid.textContent = '';
+                data.posts.forEach(post => {
+                    const card = document.createElement('article');
+                    card.className = 'announcement-card';
+                    const date = document.createElement('div');
+                    date.className = 'date';
+                    date.textContent = new Date(post.published_at || post.created_at || Date.now()).toLocaleDateString();
+                    const title = document.createElement('h3');
+                    title.textContent = post.title || 'Announcement';
+                    const content = document.createElement('p');
+                    const parsed = new DOMParser().parseFromString(post.content || '', 'text/html');
+                    content.textContent = parsed.body.textContent.trim() || 'See the newsroom for details.';
+                    const link = document.createElement('a');
+                    link.className = 'read-more';
+                    link.href = `/post/${encodeURIComponent(post.id)}`;
+                    link.textContent = 'Read More';
+                    card.append(date, title, content, link);
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                grid.textContent = '';
+                const errorState = document.createElement('div');
+                errorState.className = 'announcement-card';
+                errorState.setAttribute('role', 'alert');
+                errorState.textContent = 'Announcements are temporarily unavailable. Please try again later.';
+                grid.appendChild(errorState);
+                console.error('Failed to load announcements:', error);
+            }
+        }
+        window.addEventListener('load', loadAnnouncements);
+    </script>
+</body>
+</html>

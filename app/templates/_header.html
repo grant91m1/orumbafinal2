@@ -1,0 +1,148 @@
+<header class="header-glass navbar" role="banner">
+  <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
+  <a href="/" class="logo-link" aria-label="Orumba North Home">
+    <img src="/static/images/orumba-north-logo.jpg" alt="Orumba North Logo" />
+  </a>
+
+  <span class="nav-title-mobile">Ndi Orumba</span>
+
+  <div class="nav-container" id="nav-container">
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    <nav class="nav-menu">
+      <ul class="nav-list" id="nav-list">
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a href="/about">About</a>
+          <ul class="dropdown-menu">
+            <li><a href="/about/history">History</a></li>
+            <li><a href="/about/landmarks-culture">Landmarks &amp; Culture</a></li>
+            <li><a href="/about/people">People</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/government">Government</a>
+          <ul class="dropdown-menu">
+            <li><a href="/government/administration">Administration</a></li>
+            <li><a href="/government/management-team">Management Team</a></li>
+            <li><a href="/government">Council Structure</a></li>
+          </ul>
+        </li>
+        <li><a href="/departments">Departments</a></li>
+        <li class="dropdown">
+          <a href="/newsroom">Newsroom</a>
+          <ul class="dropdown-menu">
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/newsroom">News</a></li>
+            <li><a href="/upcoming-events">Upcoming Events</a></li>
+          </ul>
+        </li>
+        <li><a href="/map-explore">Map/Explore</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li id="auth-link"><a href="/login">Login</a></li>
+        <li id="profile-link" style="display:none"><a href="/profile">Profile</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false">
+    <svg viewBox="0 0 100 80" fill="#ffffff">
+      <rect width="100" height="12" rx="2"></rect>
+      <rect y="34" width="100" height="12" rx="2"></rect>
+      <rect y="68" width="100" height="12" rx="2"></rect>
+    </svg>
+  </button>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger-btn');
+  const navContainer = document.getElementById('nav-container');
+  const drawerClose = document.getElementById('drawer-close');
+  const navList = document.getElementById('nav-list');
+  const authLink = document.getElementById('auth-link');
+  const profileLink = document.getElementById('profile-link');
+
+  function closeMenu() {
+    navContainer.classList.remove('active');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+  }
+
+  function openMenu() {
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('active');
+    navContainer.classList.add('active');
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  if (drawerClose) {
+    drawerClose.addEventListener('click', closeMenu);
+  }
+
+  // Single outside-click handler: close only when clicking outside the navbar/header.
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.header-glass.navbar')) {
+      closeMenu();
+    }
+  });
+
+  navList.querySelectorAll('li:not(.dropdown) > a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        closeMenu();
+      }
+    });
+  });
+
+  fetch('/api/check-auth')
+    .then(res => res.json())
+    .then(data => {
+      if (data.authenticated) {
+        authLink.style.display = 'none';
+        profileLink.style.display = 'block';
+        profileLink.querySelector('a').textContent = 'Profile';
+      }
+    })
+    .catch(() => {
+      authLink.style.display = 'block';
+      profileLink.style.display = 'none';
+    });
+
+  navList.querySelectorAll('.dropdown > a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const dropdown = link.parentElement;
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) return;
+
+      // Prevent navigation on mobile; just toggle dropdown.
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isOpen = dropdown.classList.contains('active');
+
+      document.querySelectorAll('.dropdown.active').forEach(d => {
+        if (d !== dropdown) d.classList.remove('active');
+      });
+
+      if (isOpen) {
+        dropdown.classList.remove('active');
+      } else {
+        dropdown.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+<link rel="stylesheet" href="/static/css/navbar.css">
+<link rel="stylesheet" href="/static/css/glassmorphism.css">
+<link rel="stylesheet" href="/static/css/mobile-global.css">

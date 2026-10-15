@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Read the full article from Orumba North LGA Newsroom.">
+    <title>Article — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .article-hero {
+            background: linear-gradient(135deg, rgba(0,80,0,0.9), rgba(34,197,94,0.8));
+            padding: 6rem 2rem 4rem;
+            margin-top: -75px;
+            padding-top: calc(75px + 4rem);
+            color: white;
+            text-align: center;
+        }
+        .article-hero .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .article-hero h1 {
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .article-hero .meta { opacity: 0.9; font-size: var(--text-base); }
+
+        .article-body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        .article-body p {
+            color: #374151;
+            line-height: 1.8;
+            font-size: var(--text-lg);
+            margin-bottom: 1.5rem;
+        }
+        .article-body h2, .article-body h3 { color: #111827; margin: 2rem 0 1rem; }
+        .article-body blockquote {
+            border-left: 4px solid #22c55e;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: #4b5563;
+            font-style: italic;
+            font-size: var(--text-lg);
+        }
+        .article-body img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #22c55e;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .article-hero { padding: 5rem 1.5rem 3rem; padding-top: calc(75px + 3rem); }
+            .article-hero h1 { font-size: var(--text-2xl); }
+            .article-body { padding: 2rem 1rem; }
+            .article-body p { font-size: var(--text-base); }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <main id="full-post-main">
+        <div id="article-container">
+            <section class="article-hero">
+                <div class="container">
+                    <div class="badge">Featured Article</div>
+                    <h1 id="article-title">Loading Article...</h1>
+                    <div class="meta" id="article-meta">Please wait</div>
+                </div>
+            </section>
+            <div class="article-body">
+                <a href="/newsroom" class="back-link">&larr; Back to Newsroom</a>
+                <div id="article-content">
+                    <p>Fetching article content...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include '_footer.html' %}
+
+    <script>
+        async function loadFullPost() {
+            const postId = window.location.pathname.split('/').pop();
+            const container = document.getElementById('article-container');
+            try {
+                const response = await fetch(`/api/public/post/${postId}`);
+                const data = await response.json();
+                if (data.status === 'success') {
+                    const post = data.post;
+                    document.getElementById('article-title').textContent = post.title || 'Article';
+                    document.getElementById('article-meta').textContent =
+                        `${post.username || 'Newsroom'} · ${post.published_at ? new Date(post.published_at).toLocaleDateString() : ''}`;
+                    const articleContent = document.getElementById('article-content');
+                    const parsed = new DOMParser().parseFromString(post.content || '', 'text/html');
+                    articleContent.replaceChildren();
+                    appendSafeArticleNodes(parsed.body, articleContent);
+                    if (!articleContent.textContent.trim()) {
+                        const empty = document.createElement('p');
+                        empty.textContent = 'No content available.';
+                        articleContent.appendChild(empty);
+                    }
+                } else {
+                    showError('Article Not Found', 'The requested article could not be loaded.');
+                }
+            } catch (e) {
+                showError('Error Loading Article', 'Please try again later.');
+            }
+        }
+
+        function appendSafeArticleNodes(source, target) {
+            const allowedTags = new Set(['P', 'H2', 'H3', 'H4', 'STRONG', 'EM', 'U', 'S', 'UL', 'OL', 'LI', 'BLOCKQUOTE', 'BR', 'A']);
+            source.childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    target.appendChild(document.createTextNode(node.textContent));
+                    return;
+                }
+                if (node.nodeType !== Node.ELEMENT_NODE) return;
+                if (!allowedTags.has(node.tagName)) {
+                    appendSafeArticleNodes(node, target);
+                    return;
+                }
+
+                const safeNode = document.createElement(node.tagName.toLowerCase());
+                if (node.tagName === 'A') {
+                    const href = node.getAttribute('href');
+                    if (href) {
+                        try {
+                            const url = new URL(href, location.origin);
+                            if (['http:', 'https:', 'mailto:'].includes(url.protocol)) {
+                                safeNode.href = url.href;
+                                safeNode.rel = 'noopener noreferrer';
+                            }
+                        } catch (error) {
+                            console.warn('Ignoring invalid article link.', error);
+                        }
+                    }
+                }
+                target.appendChild(safeNode);
+                appendSafeArticleNodes(node, safeNode);
+            });
+        }
+
+        function showError(title, message) {
+            document.getElementById('article-container').innerHTML = `
+                <section class="section-padding text-center">
+                    <div class="container">
+                        <div class="glass-card" style="padding: 4rem; max-width: 600px; margin: 0 auto;">
+                            <h2 style="color: #111827; margin-bottom: 1rem;">${title}</h2>
+                            <p style="color: #6b7280; margin-bottom: 2rem;">${message}</p>
+                            <a href="/newsroom" class="btn-primary">&larr; Back to Newsroom</a>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        window.addEventListener('load', loadFullPost);
+    </script>
+</body>
+</html>

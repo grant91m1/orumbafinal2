@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.env
+.env.*
+!.env.example
+
+.vercel
+
+# Local credentials and development data
+/cookies.txt
+/users.json
+/posts.json
+/orumba_north_summary.json
+/instance/*
+!/instance/.gitkeep
+/app/instance/
+*.db
+
+# User-uploaded media is stored outside source control
+/static/uploads/*
+!/static/uploads/.gitkeep
+
+# Stray local artifact
+/path/

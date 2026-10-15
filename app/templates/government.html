@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Government structure of Orumba North LGA — Executive, Legislative, Supervisors, and Department Heads.">
+    <title>Government — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <link rel="stylesheet" href="/static/css/glassmorphism.css">
+    <link rel="stylesheet" href="/static/css/government-page.css">
+</head>
+<body>
+
+    {% include '_header.html' %}
+
+    <section class="gov-hero">
+        <div class="container">
+            <h1>Government Structure</h1>
+            <p>A transparent, accountable, and people-focused administration serving all 18 wards of Orumba North.</p>
+            <a href="/government/administration" class="btn-primary" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); padding: 0.875rem 2rem; border-radius: 50px; color: white; text-decoration: none; font-weight: 600; display: inline-block;">View Administration</a>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" data-tab="executive">Executive Arm</button>
+                <button class="tab-btn" data-tab="legislative">Legislative Arm</button>
+                <button class="tab-btn" data-tab="supervisors">Supervisors</button>
+                <button class="tab-btn" data-tab="department-heads">Department Heads</button>
+            </div>
+
+            <!-- Executive -->
+            <div id="executive" class="tab-content active">
+                <div class="grid-responsive-3">
+                    <div class="glass-card gov-card">
+                        <img class="gov-avatar" src="/static/images/mayorimg3.JPG" alt="Hon. Barr. Casmir Chinonso Nwafor" loading="lazy"/>
+                        <h3>Hon. Barr. Casmir Chinonso Nwafor</h3>
+                        <p class="gov-role">Executive Chairman</p>
+                        <p>Chief executive officer responsible for policy implementation, strategic planning, and development initiatives across all 10 wards.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128100;</div>
+                        <h3>Hon. Ifesinachi Chukwurah</h3>
+                        <p class="gov-role">Vice Chairman</p>
+                        <p>Deputy executive overseeing community engagement, women's empowerment, and social welfare programmes.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128100;</div>
+                        <h3>Secretary to the LGA</h3>
+                        <p class="gov-role">Head of Administration</p>
+                        <p>Coordinates all government operations, manages records, and ensures seamless inter-departmental communication.</p>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Legislative -->
+            <div id="legislative" class="tab-content">
+                <div class="grid-responsive-3">
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128100;</div>
+                        <h3>Legislative Leadership</h3>
+                        <p class="gov-role">House Committee Oversight</p>
+                        <p>Ensures enactment of by-laws, budget oversight, and representation of community interests.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128101;</div>
+                        <h3>Ward Representatives</h3>
+                        <p class="gov-role">Grassroots Participation</p>
+                        <p>Provides ward-based legislative input and monitors constituency projects and service delivery.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128100;</div>
+                        <h3>Committee Members</h3>
+                        <p class="gov-role">Policy &amp; Budget Review</p>
+                        <p>Reviews sector proposals, conducts legislative hearings, and supports council decisions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supervisors -->
+            <div id="supervisors" class="tab-content">
+                <div class="grid-responsive-3">
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#127973;</div>
+                        <h3>Supervision &amp; Compliance</h3>
+                        <p class="gov-role">Sector Supervisors</p>
+                        <p>Coordinates implementation across key sectors, ensuring quality, accountability, and timelines.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#127979;</div>
+                        <h3>Works Oversight</h3>
+                        <p class="gov-role">Public Infrastructure</p>
+                        <p>Monitors road works, drainage systems, and public projects for effective delivery.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128679;</div>
+                        <h3>Education &amp; Health</h3>
+                        <p class="gov-role">Social Services</p>
+                        <p>Supervises service outcomes in schools and health centres to improve community welfare.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department Heads -->
+            <div id="department-heads" class="tab-content">
+                <div class="grid-responsive-3">
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128187;</div>
+                        <h3>ICT Director</h3>
+                        <p class="gov-role">Technology &amp; Innovation</p>
+                        <p>Drives digital transformation, e-governance platforms, and data systems modernisation.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128176;</div>
+                        <h3>Finance Director</h3>
+                        <p class="gov-role">Budget &amp; Accounts</p>
+                        <p>Manages financial planning, revenue collection, and audit compliance for all departments.</p>
+                    </div>
+                    <div class="glass-card gov-card">
+                        <div class="gov-avatar">&#128101;</div>
+                        <h3>HR Director</h3>
+                        <p class="gov-role">Personnel Management</p>
+                        <p>Handles staff recruitment, training programmes, and welfare administration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="/departments" class="btn-primary" style="padding: 0.875rem 2rem;">All 10 Departments &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+
+    <script src="/static/js/government-page.js"></script>
+
+</body>
+</html>
+

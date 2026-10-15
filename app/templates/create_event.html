@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="description" content="Create a new event for Orumba North LGA.">
+    <title>Create Event — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        :root { --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #dbeafe 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        main { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+        h1 {
+            color: #000;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.6rem, 5vw, 2.5rem);
+            font-weight: 800;
+            text-shadow: none;
+        }
+
+        .form-container {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group { margin-bottom: 1.25rem; }
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            color: #000;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid rgba(0,0,0,0.15);
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            font-family: var(--font-body);
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            box-sizing: border-box;
+        }
+        input::placeholder, textarea::placeholder { color: #666; font-weight: 500; }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+        }
+        input[type="file"] {
+            padding: 0.6rem;
+            border: 1.5px dashed rgba(0,0,0,0.2);
+            background: #f8fafc;
+            color: #000;
+            font-weight: 600;
+        }
+        input[type="file"]::file-selector-button {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 0.75rem;
+            font-weight: 700;
+            font-family: var(--font-body);
+            transition: background 0.25s ease;
+        }
+        input[type="file"]::file-selector-button:hover { background: #000; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        #editor-container {
+            height: clamp(200px, 30vh, 300px);
+            background: #fff;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.15);
+        }
+        .ql-toolbar.ql-snow {
+            border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            background: #f8fafc;
+            padding: 0.5rem 0.75rem;
+        }
+        .ql-toolbar.ql-snow .ql-picker-label,
+        .ql-toolbar.ql-snow .ql-picker-item,
+        .ql-toolbar.ql-snow button { color: #000; stroke: #000; }
+        .ql-toolbar.ql-snow .ql-stroke { stroke: #000; }
+        .ql-toolbar.ql-snow .ql-fill { fill: #000; }
+        .ql-toolbar.ql-snow button:hover .ql-stroke,
+        .ql-toolbar.ql-snow .ql-active .ql-stroke { stroke: #22c55e; }
+        .ql-container.ql-snow { border: none; background: #fff; }
+        .ql-editor { color: #000; font-size: 1rem; font-family: var(--font-body); min-height: clamp(160px, 25vh, 250px); }
+        .ql-editor.ql-blank::before { color: #666; font-style: normal; }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #000;
+            border: none;
+            padding: 0.85rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-family: var(--font-body);
+            width: 100%;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 24px rgba(34,197,94,0.3);
+        }
+        .btn-submit:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(34,197,94,0.4);
+        }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .status-msg {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+        }
+        .status-msg.success { display: block; background: rgba(34,197,94,0.2); color: #000; border: 1px solid rgba(34,197,94,0.4); }
+        .status-msg.error { display: block; background: rgba(239,68,68,0.2); color: #000; border: 1px solid rgba(239,68,68,0.4); }
+        .status-msg.info { display: block; background: rgba(59,130,246,0.2); color: #000; border: 1px solid rgba(59,130,246,0.4); }
+
+        @media (max-width: 768px) {
+            body { padding-top: 75px; }
+            main { padding: 1.25rem 1rem; max-width: 100%; }
+            h1 { font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: 1.25rem; }
+            .form-container { padding: 1.25rem; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .form-group { margin-bottom: 1rem; }
+            input, textarea, select { padding: 0.8rem 1rem; font-size: 16px; }
+            #editor-container { height: clamp(180px, 28vh, 280px); }
+            .btn-submit { padding: 0.9rem 1.25rem; min-height: 52px; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding-top: 70px; }
+            main { padding: 0.875rem 0.625rem; }
+            h1 { font-size: clamp(1.35rem, 6.5vw, 1.7rem); }
+            .form-container { padding: 1rem 0.875rem; }
+            input, textarea, select { padding: 0.85rem 0.875rem; font-size: 16px; }
+            #editor-container { height: clamp(160px, 26vh, 240px); }
+            .ql-toolbar.ql-snow button { width: 28px; height: 28px; padding: 3px; }
+            .btn-submit { padding: 0.85rem 1rem; font-size: 0.95rem; min-height: 52px; }
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/content-forms.css">
+</head>
+<body class="content-form-page">
+    {% include '_header.html' %}
+    <main>
+        <h1>Create New Event</h1>
+        <div class="form-container">
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="event-title">Event Title</label>
+                    <input type="text" id="event-title" name="title" placeholder="Enter event title" maxlength="160" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-date">Date &amp; Time</label>
+                        <input type="datetime-local" id="event-date" name="datetime" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="event-location">Location</label>
+                        <input type="text" id="event-location" name="location" placeholder="Event location" maxlength="200" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <div id="editor-container"></div>
+                </div>
+                <div class="form-group">
+                    <label for="event-image">Banner Image (Optional)</label>
+                    <input type="file" id="event-image" name="image" accept="image/*" />
+                </div>
+                <button type="submit" class="btn-submit" id="submitBtn">Create Event &amp; Publish</button>
+                <div class="status-msg" id="statusMsg"></div>
+            </form>
+        </div>
+    </main>
+    {% include '_footer.html' %}
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'image'],
+                    [{ 'list': 'ordered'},{ 'list': 'bullet' }],
+                    ['clean']
+                ]
+            },
+            placeholder: 'Describe the event...'
+        });
+
+        const eventForm = document.getElementById('eventForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMsg = document.getElementById('statusMsg');
+
+        function showStatus(text, type) {
+            statusMsg.textContent = text;
+            statusMsg.className = 'status-msg ' + type;
+        }
+
+        eventForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            showStatus('Creating event...', 'info');
+
+            const formData = {
+                title: document.getElementById('event-title').value.trim(),
+                datetime: document.getElementById('event-date').value,
+                location: document.getElementById('event-location').value.trim(),
+                description: quill.root.innerHTML,
+                status: 'published'
+            };
+
+            if (!formData.title || !formData.datetime || !formData.location) {
+                showStatus('Please fill in all required fields.', 'error');
+                submitBtn.disabled = false;
+                return;
+            }
+
+            const imageFile = document.getElementById('event-image').files[0];
+            if (imageFile) {
+                const uploadForm = new FormData();
+                uploadForm.append('file', imageFile);
+                try {
+                    const uploadRes = await fetch('/api/upload/image', {
+                        method: 'POST',
+                        headers: { 'X-CSRFToken': document.getElementById('csrf-token').value },
+                        body: uploadForm
+                    });
+                    const uploadData = await uploadRes.json();
+                    if (!uploadRes.ok || uploadData.status !== 'success') {
+                        throw new Error(uploadData.message || 'Image upload failed.');
+                    }
+                    formData.image = uploadData.url;
+                } catch (err) {
+                    showStatus(err.message || 'Image upload failed. Please try again.', 'error');
+                    submitBtn.disabled = false;
+                    return;
+                }
+            }
+
+            try {
+                const res = await fetch('/api/profile/events', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.getElementById('csrf-token').value
+                    },
+                    body: JSON.stringify({
+                        title: formData.title,
+                        date: formData.datetime,
+                        location: formData.location,
+                        content: formData.description,
+                        image: formData.image || '',
+                        status: formData.status
+                    })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    showStatus('Event created successfully! Redirecting...', 'success');
+                    setTimeout(() => { window.location.href = '/upcoming-events'; }, 1200);
+                } else {
+                    showStatus('Error: ' + (data.message || 'Failed to create event'), 'error');
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                showStatus('Network error. Please try again.', 'error');
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

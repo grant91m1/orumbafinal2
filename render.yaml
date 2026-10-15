@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: orumba-north-lga
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 1 -b 0.0.0.0:$PORT wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_STORAGE_BUCKET
+        value: uploads
+      - key: USE_CLOUD_STORAGE
+        value: "true"
+      - key: FLASK_ENV
+        value: production
+    autoDeploy: true

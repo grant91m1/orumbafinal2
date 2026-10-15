@@ -1,0 +1,466 @@
+/* Clean Navbar Rewrite - No Conflicts */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.header-glass.navbar {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  max-width: 1400px;
+  height: 70px;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 35px;
+  box-shadow: 0 15px 50px rgba(0, 50, 0, 0.5);
+  z-index: 10000;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: all 0.3s ease;
+}
+
+.header-glass.navbar .logo-link img {
+  height: 50px;
+  transition: transform 0.3s;
+}
+
+.header-glass.navbar .nav-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-list a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-list a:hover {
+  color: #FFD700;
+  text-shadow: none;
+}
+
+.nav-list a:focus-visible {
+  color: #FFD700;
+  outline: 2px solid #FFD700;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #FFD700;
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-list a:hover::after {
+  width: 80%;
+}
+
+/* Dropdown Desktop */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 20px;
+  min-width: 250px;
+  list-style: none;
+  padding: 1rem 0;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  z-index: 10001;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .dropdown:hover .dropdown-menu {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  color: white;
+  font-size: 0.9rem;
+  transition: padding-left 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(34, 197, 94, 0.2);
+  padding-left: 2rem;
+}
+
+/* Hamburger - MOBILE ONLY (hidden on desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger svg {
+  width: 36px;
+  height: 36px;
+}
+
+.hamburger rect {
+  fill: #ffffff !important;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.hamburger.active rect:nth-child(1) {
+  transform: rotate(45deg) translate(9px, 9px);
+}
+
+.hamburger.active rect:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger.active rect:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Mobile Title */
+.nav-title-mobile {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: white;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  order: 0;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .header-glass.navbar {
+    width: 95vw;
+    left: 2.5vw;
+    transform: none;
+    padding: 0 1.5rem;
+  }
+
+  .nav-list {
+    gap: 1.5rem;
+  }
+}
+
+/* Drawer close button - hidden on desktop, shown on mobile */
+.drawer-close {
+  display: none;
+}
+
+/* ================= MOBILE (<= 768px) ================= */
+@media (max-width: 768px) {
+  header.header-glass.navbar {
+    height: 55px !important;
+    padding: 0.5rem 1.25rem !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+    transform: none !important;
+    left: 2.5vw !important;
+    width: 95vw !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+
+  header.header-glass.navbar .logo-link img {
+    height: 40px !important;
+  }
+
+  header.header-glass.navbar .hamburger {
+    display: block !important;
+    margin-left: auto;
+    padding: 0.5rem !important;
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+  }
+
+  header.header-glass.navbar .hamburger svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  header.header-glass.navbar .nav-title-mobile {
+    display: none !important;
+  }
+
+  /* ---- Slide-in Drawer (60% height & width) ---- */
+  .nav-container {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 60vw !important;
+    max-width: 340px !important;
+    min-width: 260px !important;
+    height: 60vh !important;
+    min-height: 280px !important;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(30px);
+    flex-direction: column;
+    transform: translateX(100%);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0 0 0 24px;
+    box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    padding: 72px 0 1.5rem 0;
+    border-left: 1px solid rgba(34, 197, 94, 0.3);
+    border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .nav-container.active {
+    transform: translateX(0);
+  }
+
+  /* Drawer close button - now shows Orumba North logo */
+  .drawer-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    transition: all 0.25s ease;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+  }
+
+  .drawer-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .drawer-close img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Backdrop overlay */
+  .header-glass.navbar::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9997;
+    pointer-events: none;
+  }
+
+  .header-glass.navbar:has(.nav-container.active)::after {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* ---- Nav List inside drawer ---- */
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    padding: 0;
+    overflow-y: visible;
+    max-height: none;
+  }
+
+  .nav-list li {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.35s ease forwards;
+  }
+
+  .nav-list li:nth-child(1) { animation-delay: 0.08s; }
+  .nav-list li:nth-child(2) { animation-delay: 0.12s; }
+  .nav-list li:nth-child(3) { animation-delay: 0.16s; }
+  .nav-list li:nth-child(4) { animation-delay: 0.20s; }
+  .nav-list li:nth-child(5) { animation-delay: 0.24s; }
+  .nav-list li:nth-child(6) { animation-delay: 0.28s; }
+  .nav-list li:nth-child(7) { animation-delay: 0.32s; }
+  .nav-list li:nth-child(8) { animation-delay: 0.36s; }
+  .nav-list li:nth-child(9) { animation-delay: 0.40s; }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: all 0.25s ease;
+    border-radius: 0;
+    margin: 0;
+    position: relative;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(34, 197, 94, 0.15);
+    text-transform: none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+
+.nav-list a:hover,
+  .nav-list a:active,
+  .nav-list a:focus {
+    background: rgba(34, 197, 94, 0.12);
+  }
+
+
+  /* ---- Dropdowns inside drawer (mobile) ---- */
+  .nav-container .dropdown-menu {
+    position: static;
+    left: auto;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    background: rgba(34, 197, 94, 0.08);
+    margin: 0;
+    border-radius: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    border: none;
+    min-width: auto;
+    padding: 0;
+  }
+
+
+  .dropdown.active .dropdown-menu {
+    max-height: 500px;
+    padding: 0.25rem 0;
+  }
+
+
+  .dropdown-menu li a {
+    padding: 0.7rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 400;
+    border-bottom: none;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .dropdown-menu li a:hover {
+    background: rgba(34, 197, 94, 0.15);
+    padding-left: 2.25rem;
+    color: #FFD700;
+  }
+}
+
+/* ================= SMALL MOBILE (<= 480px) ================= */
+@media (max-width: 480px) {
+  .nav-container {
+    width: 60vw !important;
+    padding: 70px 0 1.5rem 0;
+  }
+
+  .nav-list a {
+    padding: 0.8rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.6rem 1.75rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* ================= EXTRA SMALL (<= 360px) ================= */
+@media (max-width: 360px) {
+  .nav-list a {
+    padding: 0.7rem 1rem;
+    font-size: 0.82rem;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.55rem 1.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Scrolled state */
+.header-glass.navbar.scrolled {
+  top: 0.5rem;
+  height: 60px;
+}
+
+.header-glass.navbar.scrolled .logo-link img {
+  height: 45px;
+}

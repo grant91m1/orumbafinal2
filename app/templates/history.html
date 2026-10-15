@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>History of Orumba North</title>
+    <link rel="stylesheet" href="/static/css/global-theme.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* History Page Hero Section */
+        .history-hero {
+            position: relative;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 60px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .history-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.85) 50%, rgba(15, 52, 96, 0.85) 100%);
+            z-index: 1;
+        }
+        
+        .history-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+        
+        .history-hero h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .history-hero p {
+            font-size: 1.2rem;
+            color: #dfe6e9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+        }
+
+        /* Main content styles matching project aesthetic */
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Glass morphism collapsible buttons */
+        .collapsible {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #dfe6e9;
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .collapsible:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+        }
+
+        .collapsible.active {
+            background: rgba(0, 184, 148, 0.3);
+            border-bottom: 3px solid #00b894;
+        }
+
+        /* Glass morphism content panels */
+        .content {
+            padding: 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0 0 12px 12px;
+            margin-bottom: 1rem;
+            color: #dfe6e9;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .content p {
+            color: #dfe6e9;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Image container with glass effect */
+        .image-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .image-container img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 184, 148, 0.4);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid #00b894;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 184, 148, 0.6);
+        }
+
+        .image-container p {
+            color: #dfe6e9;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            text-align: center;
+            color: #dfe6e9;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .history-hero {
+                height: 250px;
+            }
+            
+            .history-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .collapsible {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+    
+    <div class="history-hero">
+        <div class="history-hero-content">
+            <h1>History of Orumba North</h1>
+            <p>Discover the rich heritage and cultural legacy of our great community</p>
+        </div>
+    </div>
+    
+    <main>
+        <button class="collapsible" aria-expanded="false" aria-controls="content-overview">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style="vertical-align: middle; margin-right: 6px; transition: transform 0.3s ease;" class="collapsible-icon">
+                <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5z"/>
+                <path fill-rule="evenodd" d="M8 1.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-1 0v-12a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            Overview
+        </button>
+        <div class="content" id="content-overview">
+            <p>Orumba North is a Local Government Area in Anambra State, East-central Nigeria. It is known for its rich cultural heritage and vibrant communities.</p>
+        </div>
+
+        <button class="collapsible" aria-expanded="false" aria-controls="content-historical-background">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style="vertical-align: middle; margin-right: 6px; transition: transform 0.3s ease;" class="collapsible-icon">
+                <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5z"/>
+                <path fill-rule="evenodd" d="M8 1.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-1 0v-12a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            Historical Background
+        </button>
+        <div class="content" id="content-historical-background">
+            <p>The area has a long history dating back to pre-colonial times, with indigenous peoples who have maintained their traditions and customs through generations. The region played a role in the socio-political development of Anambra State and Nigeria as a whole.</p>
+        </div>
+
+        <button class="collapsible" aria-expanded="false" aria-controls="content-culture-traditions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style="vertical-align: middle; margin-right: 6px; transition: transform 0.3s ease;" class="collapsible-icon">
+                <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5z"/>
+                <path fill-rule="evenodd" d="M8 1.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-1 0v-12a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            Culture and Traditions
+        </button>
+        <div class="content" id="content-culture-traditions">
+            <p>Orumba North is home to various festivals, traditional dances, and crafts that reflect the identity of its people. The community values its heritage and continues to celebrate its history through annual events and ceremonies.</p>
+        </div>
+
+        <div class="image-container">
+            <img src="/static/images/orumba-north-logo.jpg" alt="Orumba North Logo" />
+            <p>Orumba North Logo</p>
+        </div>
+
+        <button class="collapsible" aria-expanded="false" aria-controls="content-geography-economy">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style="vertical-align: middle; margin-right: 6px; transition: transform 0.3s ease;" class="collapsible-icon">
+                <path fill-rule="evenodd" d="M1.5 8a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5z"/>
+                <path fill-rule="evenodd" d="M8 1.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-1 0v-12a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+            Geography and Economy
+        </button>
+        <div class="content" id="content-geography-economy">
+            <p>The geography of Orumba North includes fertile lands that support agriculture, which is a major economic activity. The area also benefits from trade and small-scale industries that contribute to its growth.</p>
+        </div>
+
+        <div class="image-container">
+            <img src="/static/images/orumba-north-logo.jpg" alt="Orumba North Logo" />
+            <p>Orumba North Logo</p>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Orumba North History. All rights reserved.
+    </footer>
+    <script>
+        const collapsibles = document.querySelectorAll('.collapsible');
+        collapsibles.forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+                const icon = button.querySelector('.collapsible-icon');
+                if (icon) {
+                    if (button.classList.contains('active')) {
+                        icon.style.transform = 'rotate(45deg)';
+                        button.setAttribute('aria-expanded', 'true');
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                        button.setAttribute('aria-expanded', 'false');
+                    }
+                }
+                const content = button.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

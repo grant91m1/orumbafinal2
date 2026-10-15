@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Orumba North Local Government Area — reach out for enquiries, services, and feedback.">
+    <title>Contact Us — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .contact-hero {
+            position: relative;
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+            background: linear-gradient(135deg, rgba(0,80,0,0.85), rgba(34,197,94,0.75)), url('/static/images/orumba-header-bakground-image2.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        .contact-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.5rem; }
+        .contact-hero p { font-size: var(--text-lg); opacity: 0.95; }
+
+        .contact-info-card { padding: 2rem; }
+        .contact-info-card h2 { font-size: var(--text-2xl); color: #111827; margin-bottom: 1.5rem; }
+        .info-row { margin-bottom: 1.25rem; }
+        .info-row h4 { color: #16a34a; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.35rem; }
+        .info-row p { color: #374151; font-size: var(--text-base); line-height: 1.5; margin: 0; }
+
+        .contact-form-card { padding: 2rem; }
+        .contact-form-card h2 { font-size: var(--text-2xl); color: #111827; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 500; color: #374151; margin-bottom: 0.4rem; }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+        }
+        .form-group textarea { resize: vertical; min-height: 140px; }
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.3);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(34,197,94,0.4); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .status-msg {
+            margin-top: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+        .status-msg.success { display: block; background: #dcfce7; color: #166534; }
+        .status-msg.error { display: block; background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We are here to listen, assist, and serve you better.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-responsive-2" style="align-items: stretch; gap: 2rem;">
+                <div class="glass-card contact-info-card">
+                    <h2>LGA Secretariat</h2>
+                    <div class="info-row">
+                        <h4>Address</h4>
+                        <p>Ajalli, Orumba North LGA<br>Anambra State, Nigeria</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Phone</h4>
+                        <p> +234 803 000 0000</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Email</h4>
+                        <p>info@orumba.com</p>
+                    </div>
+                    <div class="info-row">
+                        <h4>Working Hours</h4>
+                        <p>Monday — Friday: 8:00 AM to 4:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="glass-card contact-form-card">
+                    <h2>Send a Message</h2>
+                    <form id="contact-form">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" minlength="2" maxlength="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" maxlength="254" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help you?" minlength="10" maxlength="5000" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+                        <div class="status-msg" id="statusMsg" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('statusMsg');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            msg.className = 'status-msg';
+            msg.textContent = '';
+
+            try {
+                const payload = {
+                    name: form.name.value.trim(),
+                    email: form.email.value.trim(),
+                    message: form.message.value.trim()
+                };
+                const csrfToken = form.querySelector('input[name="csrf_token"]').value;
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Unable to send message.');
+                }
+
+                btn.textContent = originalText;
+                btn.disabled = false;
+                msg.className = 'status-msg success';
+                msg.textContent = data.message || 'Thank you for your message. We will respond within 48 hours.';
+                form.reset();
+            } catch (error) {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                msg.className = 'status-msg error';
+                msg.textContent = error.message || 'Something went wrong. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>

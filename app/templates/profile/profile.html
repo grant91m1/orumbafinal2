@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="description" content="Your Orumba North LGA profile dashboard.">
+    <title>Profile — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        body {
+            background: #f0f4f0;
+            min-height: 100vh;
+            padding-top: 80px;
+            padding-bottom: 2rem;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #111827;
+        }
+
+        .profile-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            gap: 1.5rem;
+        }
+
+        .profile-sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .profile-sidebar .user-info {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .profile-sidebar .user-info h2 {
+            color: #111827;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .profile-sidebar .user-info small {
+            color: #4b5563;
+            font-size: 0.85rem;
+        }
+
+        .sidebar-nav { list-style: none; padding: 0; margin: 0; }
+        .sidebar-nav li { margin-bottom: 0.25rem; }
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(34,197,94,0.12);
+            color: #15803d;
+        }
+        .sidebar-nav a span { font-size: 1.1rem; }
+
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(34,197,94,0.4);
+        }
+
+        .profile-main { flex: 1; min-width: 0; }
+        .profile-main .panel {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .profile-main .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .profile-main h1, .profile-main h2 {
+            color: #111827;
+            margin-bottom: 1.5rem;
+            font-size: var(--text-xl);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-box {
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .stat-box .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #15803d;
+            display: block;
+        }
+        .stat-box .label { color: #374151; font-size: 0.85rem; margin-top: 0.25rem; }
+
+        .content-card {
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .content-card h3 { color: #111827; margin-bottom: 0.5rem; font-size: 1rem; }
+        .content-card p { color: #374151; font-size: 0.9rem; line-height: 1.5; }
+
+        .btn-glass {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-glass.primary {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(34,197,94,0.3);
+        }
+        .btn-glass.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34,197,94,0.4);
+        }
+        .btn-glass.secondary {
+            background: #f3f4f6;
+            color: #111827;
+            border: 1px solid #d1d5db;
+        }
+        .btn-glass.secondary:hover { background: #e5e7eb; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .quick-actions .action-card {
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: #111827;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .quick-actions .action-card:hover {
+            transform: translateY(-4px);
+            background: #f9fafb;
+        }
+        .quick-actions .action-card .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .quick-actions .action-card h3 { font-size: 1rem; margin: 0; color: #111827; }
+
+        .glass-form .form-group { margin-bottom: 1.25rem; }
+        .glass-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #111827;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .glass-form input,
+        .glass-form select,
+        .glass-form textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #111827;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .glass-form input:focus,
+        .glass-form select:focus,
+        .glass-form textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+        }
+        .glass-form input::placeholder { color: #6b7280; opacity: 1; }
+
+        @media (max-width: 768px) {
+            .profile-layout { flex-direction: column; padding: 1rem; }
+            .profile-sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 280px;
+                z-index: 999;
+                border-radius: 0;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                overflow-y: auto;
+            }
+            .profile-sidebar.open { transform: translateX(0); }
+            .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 998;
+            }
+            .sidebar-overlay.open { display: block; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+            .stat-box { padding: 1rem 0.5rem; }
+            .stat-box .number { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            body { padding-top: 70px; }
+            .stats-row { grid-template-columns: 1fr; }
+            .section-header { flex-direction: column; align-items: flex-start; }
+            .quick-actions { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">&#9776;</button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="profile-layout">
+        <aside class="profile-sidebar" id="profileSidebar">
+            <div class="user-info">
+                <h2 id="userName">Loading...</h2>
+                <small id="userRole">Citizen</small>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#" data-panel="dashboard" class="nav-link active"><span>&#128202;</span> Dashboard</a></li>
+                <li><a href="#" data-panel="posts"><span>&#128240;</span> My Posts</a></li>
+                <li><a href="#" data-panel="albums"><span>&#128247;</span> Albums</a></li>
+                <li><a href="#" data-panel="events"><span>&#128197;</span> Events</a></li>
+                <li><a href="#" data-panel="create"><span>&#10133;</span> Create New</a></li>
+                <li><a href="#" data-panel="settings"><span>&#9881;</span> Settings</a></li>
+                <li><a href="#" id="logoutBtn"><span>&#128682;</span> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="profile-main">
+            <!-- Dashboard -->
+            <div id="dashboard" class="panel active">
+                <h1>Dashboard</h1>
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <span class="number" id="statPosts">0</span>
+                        <div class="label">Posts</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number" id="statAlbums">0</span>
+                        <div class="label">Albums</div>
+                    </div>
+                    <div class="stat-box">
+                        <span class="number" id="statEvents">0</span>
+                        <div class="label">Events</div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>Recent Activity</h3>
+                    <p id="activityList">No recent activity to display.</p>
+                </div>
+            </div>
+
+            <!-- My Posts -->
+            <div id="posts" class="panel">
+                <div class="section-header">
+                    <h2>My Posts</h2>
+                    <a href="/create-post" class="btn-glass primary">+ New Post</a>
+                </div>
+                <div id="postsGrid">
+                    <div class="content-card">
+                        <p style="color: #374151; text-align: center; padding: 2rem 0;">No posts yet. Create your first post!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Albums -->
+            <div id="albums" class="panel">
+                <div class="section-header">
+                    <h2>My Albums</h2>
+                    <a href="/create-album" class="btn-glass primary">+ New Album</a>
+                </div>
+                <div id="albumsGrid">
+                    <div class="content-card">
+                        <p style="color: #374151; text-align: center; padding: 2rem 0;">No albums yet. Create your first album!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events -->
+            <div id="events" class="panel">
+                <div class="section-header">
+                    <h2>My Events</h2>
+                    <a href="/create-event" class="btn-glass primary">+ New Event</a>
+                </div>
+                <div id="eventsGrid">
+                    <div class="content-card">
+                        <p style="color: #374151; text-align: center; padding: 2rem 0;">No events yet. Create your first event!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create New -->
+            <div id="create" class="panel">
+                <h2>Create New Content</h2>
+                <div class="quick-actions">
+                    <a href="/create-post" class="action-card">
+                        <div class="icon">&#128240;</div>
+                        <h3>New Post</h3>
+                    </a>
+                    <a href="/create-album" class="action-card">
+                        <div class="icon">&#128247;</div>
+                        <h3>New Album</h3>
+                    </a>
+                    <a href="/create-event" class="action-card">
+                        <div class="icon">&#128197;</div>
+                        <h3>New Event</h3>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div id="settings" class="panel">
+                <h2>Profile Settings</h2>
+                <div class="content-card">
+                    <form class="glass-form" id="settingsForm">
+                        <div class="form-group">
+                            <label for="settingName">Full Name</label>
+                            <input type="text" id="settingName" placeholder="Your full name" minlength="2" maxlength="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="settingEmail">Email</label>
+                            <input type="email" id="settingEmail" placeholder="your@email.com" maxlength="254">
+                        </div>
+                        <div class="form-group">
+                            <label for="settingAvatar">Profile Photo</label>
+                            <input type="file" id="settingAvatar" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn-glass primary">Save Changes</button>
+                        <div id="settingsMessage" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    {% include '_footer.html' %}
+
+    <script>
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a[data-panel]');
+        const panels = document.querySelectorAll('.panel');
+        const sidebar = document.getElementById('profileSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const toggleBtn = document.getElementById('sidebarToggle');
+
+        function showPanel(panelId) {
+            panels.forEach(p => p.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            document.querySelector(`[data-panel="${panelId}"]`).classList.add('active');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+
+            const loaders = {
+                posts: loadPosts,
+                albums: loadAlbums,
+                events: loadEvents
+            };
+            if (loaders[panelId]) loaders[panelId]();
+        }
+
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPanel(link.dataset.panel);
+            });
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/profile/stats');
+                const data = await res.json();
+                if (!res.ok || data.status !== 'success' || !data.stats) {
+                    throw new Error(data.message || 'Unable to load dashboard statistics.');
+                }
+                document.getElementById('statPosts').textContent = data.stats.posts || 0;
+                document.getElementById('statAlbums').textContent = data.stats.albums || 0;
+                document.getElementById('statEvents').textContent = data.stats.events || 0;
+            } catch (error) {
+                ['statPosts', 'statAlbums', 'statEvents'].forEach(id => {
+                    document.getElementById(id).textContent = 'N/A';
+                });
+            }
+        }
+
+        function createContentCard(title, description) {
+            const card = document.createElement('article');
+            card.className = 'content-card';
+            const heading = document.createElement('h3');
+            heading.textContent = title || 'Untitled';
+            const text = document.createElement('p');
+            text.textContent = description || '';
+            card.append(heading, text);
+            return card;
+        }
+
+        function showCollectionMessage(container, message) {
+            const card = document.createElement('div');
+            card.className = 'content-card';
+            const text = document.createElement('p');
+            text.style.cssText = 'color: #374151; text-align: center; padding: 2rem 0;';
+            text.textContent = message;
+            card.append(text);
+            container.replaceChildren(card);
+        }
+
+        async function loadProfileCollection(endpoint, collectionKey, containerId, emptyMessage, renderItem) {
+            const container = document.getElementById(containerId);
+            showCollectionMessage(container, 'Loading...');
+            try {
+                const response = await fetch(endpoint);
+                const data = await response.json();
+                if (!response.ok || data.status !== 'success' || !Array.isArray(data[collectionKey])) {
+                    throw new Error(data.message || 'Unable to load your content.');
+                }
+                if (!data[collectionKey].length) {
+                    showCollectionMessage(container, emptyMessage);
+                    return;
+                }
+                container.replaceChildren(...data[collectionKey].map(renderItem));
+            } catch (error) {
+                showCollectionMessage(container, error.message || 'Unable to load your content. Please try again.');
+            }
+        }
+
+        function loadPosts() {
+            return loadProfileCollection('/api/profile/posts', 'posts', 'postsGrid', 'No posts yet. Create your first post!', post => {
+                const parser = new DOMParser();
+                const content = parser.parseFromString(post.content || '', 'text/html').body.textContent.trim();
+                const card = createContentCard(post.title, content || 'No post content.');
+                const status = document.createElement('p');
+                status.textContent = `Status: ${post.status || 'draft'}`;
+                card.append(status);
+                return card;
+            });
+        }
+
+        function loadAlbums() {
+            return loadProfileCollection('/api/profile/albums', 'albums', 'albumsGrid', 'No albums yet. Create your first album!', album => {
+                const photoCount = Array.isArray(album.posts) ? album.posts.length : 0;
+                return createContentCard(album.title, `${photoCount} ${photoCount === 1 ? 'photo' : 'photos'}`);
+            });
+        }
+
+        function loadEvents() {
+            return loadProfileCollection('/api/profile/events', 'events', 'eventsGrid', 'No events yet. Create your first event!', event => {
+                const date = new Date(event.date);
+                const dateLabel = Number.isNaN(date.getTime()) ? event.date : date.toLocaleString();
+                const details = [dateLabel, event.location, event.status || 'draft'].filter(Boolean).join(' | ');
+                return createContentCard(event.title, details);
+            });
+        }
+
+        async function loadUser() {
+            try {
+                const res = await fetch('/api/check-auth');
+                const data = await res.json();
+                if (res.ok && data.authenticated) {
+                    document.getElementById('userName').textContent = data.name || data.username || 'User';
+                    document.getElementById('settingName').value = data.name || '';
+                    document.getElementById('settingEmail').value = data.email || '';
+                }
+            } catch (error) {
+                document.getElementById('userName').textContent = 'Profile unavailable';
+            }
+        }
+
+        document.getElementById('settingsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.currentTarget;
+            const button = form.querySelector('button[type="submit"]');
+            const status = document.getElementById('settingsMessage');
+            button.disabled = true;
+            status.textContent = 'Saving changes...';
+
+            try {
+                let avatar = '';
+                const file = document.getElementById('settingAvatar').files[0];
+                if (file) {
+                    const uploadForm = new FormData();
+                    uploadForm.append('file', file);
+                    const upload = await fetch('/api/upload/image', {
+                        method: 'POST',
+                        headers: { 'X-CSRFToken': document.getElementById('csrf-token').value },
+                        body: uploadForm
+                    });
+                    const uploadData = await upload.json();
+                    if (!upload.ok || uploadData.status !== 'success') {
+                        throw new Error(uploadData.message || 'Profile photo upload failed.');
+                    }
+                    avatar = uploadData.url;
+                }
+
+                const response = await fetch('/api/profile/settings', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.getElementById('csrf-token').value
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementById('settingName').value.trim(),
+                        email: document.getElementById('settingEmail').value.trim(),
+                        ...(avatar ? { avatar } : {})
+                    })
+                });
+                const result = await response.json();
+                if (!response.ok || result.status !== 'success') {
+                    throw new Error(result.message || 'Unable to save profile changes.');
+                }
+                document.getElementById('userName').textContent =
+                    document.getElementById('settingName').value.trim() || 'User';
+                status.textContent = 'Changes saved.';
+            } catch (error) {
+                status.textContent = error.message || 'Unable to save profile changes.';
+            } finally {
+                button.disabled = false;
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await fetch('/api/logout', {
+                method: 'POST',
+                headers: { 'X-CSRFToken': document.getElementById('csrf-token').value }
+            });
+            window.location.href = '/';
+        });
+
+        window.addEventListener('load', () => {
+            loadUser();
+            loadStats();
+        });
+    </script>
+</body>
+</html>

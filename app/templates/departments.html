@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+    <meta name="description" content="Departments and services of Orumba North LGA.">
+    <title>Departments &amp; Services — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: #f8fff9;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #111827;
+        }
+
+        .dept-hero {
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -75px;
+            padding-top: 75px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        .dept-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .dept-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 600px; margin: 0 auto; }
+
+        .dept-section { padding: 4rem 1rem; }
+        .dept-section h2 {
+            text-align: center;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 3rem;
+        }
+
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dept-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .dept-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #22c55e;
+        }
+        .dept-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .dept-card h3 {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.75rem;
+        }
+        .dept-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .dept-card .hod-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+            border: 3px solid rgba(34,197,94,0.4);
+        }
+        .dept-card .hod-name {
+            color: #15803d;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        .dept-card .hod-email {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+
+        .dept-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .dept-modal.active { display: flex; }
+        .modal-box {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalPop 0.3s ease;
+        }
+        @keyframes modalPop { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f3f4f6;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .modal-close:hover { background: #e5e7eb; transform: rotate(90deg); }
+        .modal-box h2 { font-size: var(--text-xl); color: #111827; margin-bottom: 1rem; text-align: center; }
+        .modal-box p { color: #4b5563; line-height: 1.7; margin-bottom: 1.5rem; text-align: center; }
+        .modal-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .modal-actions a {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .modal-actions .btn-primary {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+        .modal-actions .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(34,197,94,0.3); }
+        .modal-actions .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        .modal-actions .btn-secondary:hover { background: #e5e7eb; }
+
+        @media (max-width: 768px) {
+            .dept-hero { min-height: 40vh; padding: 5rem 1rem 2rem; }
+            .dept-hero h1 { font-size: var(--text-3xl); }
+            .dept-section { padding: 2.5rem 0.75rem; }
+            .dept-section h2 { font-size: var(--text-2xl); margin-bottom: 2rem; }
+            .dept-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .dept-card { padding: 1.5rem; }
+            .dept-icon { font-size: 3rem; }
+            .modal-box { padding: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .dept-hero h1 { font-size: var(--text-xl); }
+            .dept-card { padding: 1.25rem; }
+            .dept-icon { font-size: 2.5rem; }
+            .dept-card h3 { font-size: 1.1rem; }
+            .modal-actions { flex-direction: column; }
+            .modal-actions a { width: 100%; text-align: center; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <main>
+        <section class="dept-hero">
+            <div class="container">
+                <h1>Departments &amp; Services</h1>
+                <p>ICT &middot; Finance &middot; HR &middot; Engineering &middot; Agriculture &middot; Tourism</p>
+            </div>
+        </section>
+
+        <section class="dept-section">
+            <div class="container">
+                <h2>Our Departments</h2>
+                <div class="dept-grid">
+                    <div class="dept-card" data-dept="ICT">
+                        <span class="dept-icon"><i class="fa-solid fa-laptop-code"></i></span>
+                        <h3>ICT Department</h3>
+                        <p>Digital transformation, e-governance, website management, data systems</p>
+                        <img src="/static/images/orumbamember7.jpg" alt="ICT HOD" class="hod-avatar">
+                        <div class="hod-name">Mr. Tech Lead</div>
+                        <div class="hod-email">ict@orumba.gov.ng</div>
+                    </div>
+                    <div class="dept-card" data-dept="Finance">
+                        <span class="dept-icon"><i class="fa-solid fa-coins"></i></span>
+                        <h3>Finance</h3>
+                        <p>Budget planning, revenue collection, financial reporting, treasury management</p>
+                        <img src="/static/images/orumbamember8.jpg" alt="Finance HOD" class="hod-avatar">
+                        <div class="hod-name">Mrs. Finance Director</div>
+                        <div class="hod-email">finance@orumba.gov.ng</div>
+                    </div>
+                    <div class="dept-card" data-dept="HR">
+                        <span class="dept-icon"><i class="fa-solid fa-users"></i></span>
+                        <h3>HR/Admin</h3>
+                        <p>Staff recruitment, training, welfare, general administration</p>
+                        <img src="/static/images/orumbamember9.jpg" alt="HR HOD" class="hod-avatar">
+                        <div class="hod-name">Mr. HR Manager</div>
+                        <div class="hod-email">hr@orumba.gov.ng</div>
+                    </div>
+                    <div class="dept-card" data-dept="Engineering">
+                        <span class="dept-icon"><i class="fa-solid fa-compass-drafting"></i></span>
+                        <h3>Engineering</h3>
+                        <p>Road construction, drainage systems, public works projects</p>
+                        <img src="/static/images/orumbamember10.jpg" alt="Eng HOD" class="hod-avatar">
+                        <div class="hod-name">Eng. Project Lead</div>
+                        <div class="hod-email">engineering@orumba.gov.ng</div>
+                    </div>
+                    <div class="dept-card" data-dept="Agriculture">
+                        <span class="dept-icon"><i class="fa-solid fa-seedling"></i></span>
+                        <h3>Agriculture</h3>
+                        <p>Farmer training, crop extension services, market linkages</p>
+                        <img src="/static/images/orumbamember11.jpg" alt="Agri HOD" class="hod-avatar">
+                        <div class="hod-name">Mr. Agri Director</div>
+                        <div class="hod-email">agriculture@orumba.gov.ng</div>
+                    </div>
+                    <div class="dept-card" data-dept="Tourism">
+                        <span class="dept-icon"><i class="fa-solid fa-umbrella-beach"></i></span>
+                        <h3>Tourism</h3>
+                        <p>Cultural promotion, event management, heritage preservation</p>
+                        <img src="/static/images/orumbamember12.jpg" alt="Tourism HOD" class="hod-avatar">
+                        <div class="hod-name">Ms. Tourism Manager</div>
+                        <div class="hod-email">tourism@orumba.gov.ng</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="deptModal" class="dept-modal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 id="modalTitle">Department</h2>
+            <p id="modalDesc">Description</p>
+            <div class="modal-actions">
+                <a href="#" id="modalEmail" class="btn-primary"><i class="fa-solid fa-envelope"></i> Send Email</a>
+                <a href="/government" class="btn-secondary"><i class="fa-solid fa-users"></i> Leadership</a>
+            </div>
+        </div>
+    </div>
+
+    {% include '_footer.html' %}
+
+    <script>
+        const deptsData = {
+            'ICT': {
+                title: 'ICT Department',
+                desc: 'Digital transformation, e-governance platforms, website development, cybersecurity, and data management systems.',
+                email: 'ict@orumba.gov.ng'
+            },
+            'Finance': {
+                title: 'Finance Department',
+                desc: 'Annual budgeting, revenue collection, financial audits, treasury operations, and grant management.',
+                email: 'finance@orumba.gov.ng'
+            },
+            'HR': {
+                title: 'HR/Admin Department',
+                desc: 'Staff recruitment, training programmes, employee welfare, performance appraisals, and payroll management.',
+                email: 'hr@orumba.gov.ng'
+            },
+            'Engineering': {
+                title: 'Engineering Department',
+                desc: 'Road construction, drainage systems, bridge maintenance, and public building projects.',
+                email: 'engineering@orumba.gov.ng'
+            },
+            'Agriculture': {
+                title: 'Agriculture Department',
+                desc: 'Farmer training workshops, crop extension services, agricultural loans, and market linkages.',
+                email: 'agriculture@orumba.gov.ng'
+            },
+            'Tourism': {
+                title: 'Tourism Department',
+                desc: 'Cultural festival organization, heritage site preservation, and tourism promotion campaigns.',
+                email: 'tourism@orumba.gov.ng'
+            }
+        };
+
+        const modal = document.getElementById('deptModal');
+        document.querySelectorAll('.dept-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const dept = card.dataset.dept;
+                const data = deptsData[dept];
+                if (data) {
+                    document.getElementById('modalTitle').textContent = data.title;
+                    document.getElementById('modalDesc').textContent = data.desc;
+                    document.getElementById('modalEmail').href = `mailto:${data.email}`;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    </script>
+</body>
+</html>
+

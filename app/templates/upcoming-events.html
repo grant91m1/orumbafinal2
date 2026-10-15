@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Upcoming events and community activities in Orumba North LGA.">
+    <title>Upcoming Events — Orumba North LGA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/global-theme.css">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <link rel="stylesheet" href="/static/css/mobile-global.css">
+    <style>
+        .events-hero {
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.6)), url('/static/images/orumba-header-bakground-image2.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+        }
+        .events-hero h1 { font-size: var(--text-4xl); font-weight: 800; margin-bottom: 0.75rem; text-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .events-hero p { font-size: var(--text-lg); opacity: 0.95; max-width: 700px; margin: 0 auto 1.5rem; }
+
+        .event-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            color: white;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .event-card:hover { transform: translateY(-8px); box-shadow: 0 25px 60px rgba(0,0,0,0.3); }
+        .event-card .event-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .event-card .event-bg.green { background: linear-gradient(135deg, rgba(34,197,94,0.95), rgba(16,163,74,0.95)); }
+        .event-card .event-bg.amber { background: linear-gradient(135deg, rgba(245,158,11,0.95), rgba(217,119,6,0.95)); }
+        .event-card .event-bg.blue { background: linear-gradient(135deg, rgba(59,130,246,0.95), rgba(29,78,216,0.95)); }
+        .event-card > * { position: relative; z-index: 1; }
+
+        .event-date {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+        .event-date .day { font-size: 2rem; font-weight: 800; line-height: 1; display: block; }
+        .event-date .month { font-size: 0.85rem; text-transform: uppercase; opacity: 0.9; }
+
+        .event-card h3 { font-size: var(--text-xl); margin-bottom: 0.75rem; }
+        .event-card p { opacity: 0.95; line-height: 1.6; margin-bottom: 1.5rem; font-size: var(--text-base); }
+
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .count-item {
+            text-align: center;
+            min-width: 60px;
+            background: rgba(255,255,255,0.15);
+            border-radius: var(--radius);
+            padding: 0.5rem;
+        }
+        .count-item .num { font-size: 1.75rem; font-weight: 800; }
+        .count-item .label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.85; }
+
+        @media (max-width: 768px) {
+            .events-hero { min-height: 40vh; padding: 5rem 1rem 2rem; }
+            .events-hero h1 { font-size: var(--text-3xl); }
+            .event-card { min-height: 320px; padding: 1.5rem; }
+            .event-date { padding: 0.75rem 1rem; margin-bottom: 1rem; }
+            .event-date .day { font-size: 1.5rem; }
+            .count-item { min-width: 50px; padding: 0.4rem; }
+            .count-item .num { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    {% include '_header.html' %}
+
+    <section class="events-hero">
+        <div class="container">
+            <h1>Upcoming Events</h1>
+            <p>Join our community activities, town halls, and development programmes. Stay informed and engaged.</p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-responsive-3" id="events-grid">
+                <!-- Events loaded dynamically from API -->
+            </div>
+            <div id="events-empty" style="text-align:center; padding: 4rem 2rem; display: none;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">No upcoming events</h3>
+                <p style="opacity: 0.8;">Check back soon for community activities and programmes.</p>
+            </div>
+        </div>
+    </section>
+
+    {% include '_footer.html' %}
+
+    <script>
+        const bgClasses = ['green', 'amber', 'blue'];
+        let eventData = [];
+
+        async function loadEvents() {
+            try {
+                const res = await fetch('/api/public/events');
+                const data = await res.json();
+                const grid = document.getElementById('events-grid');
+                const empty = document.getElementById('events-empty');
+
+                if (data.status !== 'success' || !data.events || data.events.length === 0) {
+                    grid.innerHTML = '';
+                    empty.style.display = 'block';
+                    return;
+                }
+
+                empty.style.display = 'none';
+                eventData = data.events;
+                grid.innerHTML = '';
+
+                eventData.forEach((evt, index) => {
+                    const bgClass = bgClasses[index % bgClasses.length];
+                    const dateObj = new Date(evt.datetime || evt.date || Date.now());
+                    const day = Number.isNaN(dateObj.getTime()) ? '' : dateObj.getDate();
+                    const month = Number.isNaN(dateObj.getTime()) ? '' : dateObj.toLocaleString('en-US', { month: 'long' });
+                    const targetISO = evt.datetime || evt.date || new Date().toISOString();
+                    const dId = `d${index}`;
+                    const hId = `h${index}`;
+                    const mId = `m${index}`;
+
+                    const card = document.createElement('div');
+                    card.className = 'event-card glass-card';
+                    card.innerHTML = `
+                        <div class="event-bg ${bgClass}"></div>
+                        <div class="event-date">
+                            <span class="day"></span>
+                            <span class="month"></span>
+                        </div>
+                        <h3></h3>
+                        <p></p>
+                        <div class="event-location" style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 1rem;"></div>
+                        <div class="countdown">
+                            <div class="count-item"><div class="num" id="${dId}">--</div><div class="label">Days</div></div>
+                            <div class="count-item"><div class="num" id="${hId}">--</div><div class="label">Hours</div></div>
+                            <div class="count-item"><div class="num" id="${mId}">--</div><div class="label">Mins</div></div>
+                        </div>
+                    `;
+                    card.querySelector('.day').textContent = day;
+                    card.querySelector('.month').textContent = month;
+                    card.querySelector('h3').textContent = evt.title || 'Untitled Event';
+                    card.querySelector('p').textContent = (evt.content || evt.description || '')
+                        .replace(/<[^>]*>/g, '').substring(0, 140) || 'Join us for this community event.';
+                    card.querySelector('.event-location').textContent = `📍 ${evt.location || 'Orumba North LGA'}`;
+                    grid.appendChild(card);
+                });
+
+                updateCountdowns();
+            } catch (e) {
+                console.error('Failed to load events:', e);
+                document.getElementById('events-grid').innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <p>Unable to load events. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function updateCountdowns() {
+            const now = new Date().getTime();
+            eventData.forEach((evt, index) => {
+                const target = new Date(evt.datetime || evt.date || Date.now()).getTime();
+                const diff = target - now;
+                const dEl = document.getElementById(`d${index}`);
+                const hEl = document.getElementById(`h${index}`);
+                const mEl = document.getElementById(`m${index}`);
+                if (!dEl || !hEl || !mEl) return;
+
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    dEl.textContent = days;
+                    hEl.textContent = hours;
+                    mEl.textContent = mins;
+                } else {
+                    dEl.textContent = '0';
+                    hEl.textContent = '0';
+                    mEl.textContent = '0';
+                }
+            });
+        }
+
+        window.addEventListener('load', loadEvents);
+        setInterval(updateCountdowns, 60000);
+    </script>
+</body>
+</html>
