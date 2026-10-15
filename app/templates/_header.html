@@ -59,6 +59,21 @@
 </header>
 
 <script>
+// Email links open a Gmail compose window instead of the device's mail app
+window.gmailComposeUrl = function (to, subject, body) {
+  const params = new URLSearchParams({ view: 'cm', fs: '1', to: to });
+  if (subject) params.set('su', subject);
+  if (body) params.set('body', body);
+  return 'https://mail.google.com/mail/?' + params.toString();
+};
+document.addEventListener('click', function (e) {
+  const link = e.target.closest('a[href^="mailto:"]');
+  if (!link) return;
+  const mail = new URL(link.href);
+  e.preventDefault();
+  window.open(window.gmailComposeUrl(decodeURIComponent(mail.pathname), mail.searchParams.get('subject'), mail.searchParams.get('body')), '_blank', 'noopener');
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburger-btn');
   const navContainer = document.getElementById('nav-container');

@@ -120,7 +120,7 @@
                             <label for="message">Your Message</label>
                             <textarea id="message" name="message" placeholder="How can we help you?" minlength="10" maxlength="5000" required></textarea>
                         </div>
-                        <button type="submit" class="btn-submit" id="submitBtn">Send Message</button>
+                        <button type="submit" class="btn-submit" id="submitBtn">Send via Gmail</button>
                         <div class="status-msg" id="statusMsg" role="status" aria-live="polite"></div>
                     </form>
                 </div>
@@ -142,12 +142,20 @@
             msg.className = 'status-msg';
             msg.textContent = '';
 
+            const payload = {
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                message: form.message.value.trim()
+            };
+
+            // Open Gmail straight away (browsers only allow new tabs directly from a click)
+            const gmail = window.open(window.gmailComposeUrl(
+                'sectariat@orumbanorthgov.com',
+                `Website message from ${payload.name}`,
+                `${payload.message}\n\n---\nName: ${payload.name}\nEmail: ${payload.email}`
+            ), '_blank');
+
             try {
-                const payload = {
-                    name: form.name.value.trim(),
-                    email: form.email.value.trim(),
-                    message: form.message.value.trim()
-                };
                 const csrfToken = form.querySelector('input[name="csrf_token"]').value;
                 const response = await fetch('/api/contact', {
                     method: 'POST',
@@ -166,7 +174,9 @@
                 btn.textContent = originalText;
                 btn.disabled = false;
                 msg.className = 'status-msg success';
-                msg.textContent = data.message || 'Thank you for your message. We will respond within 48 hours.';
+                msg.textContent = gmail
+                    ? 'Gmail has opened in a new tab with your message. Press Send there to deliver it.'
+                    : 'Your browser blocked the Gmail tab. Allow pop-ups for this site, or email sectariat@orumbanorthgov.com directly.';
                 form.reset();
             } catch (error) {
                 btn.textContent = originalText;
